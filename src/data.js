@@ -82,32 +82,34 @@
     letter: uk[0].toUpperCase(),
   }));
 
+  // Progress shown on track cards is computed live from per-scenario
+  // localStorage (see app.js) — no hardcoded lesson counts.
   const TRACKS = [
     {
       no: '01', level: 'A0 → A1', uk: 'Перший тиждень', en: 'First week in a unit',
       desc: 'Greetings, ranks, forms of address, yes/no/understood, basic needs. Day one survival language.',
-      done: 9, total: 20, tone: 'yellow', tag: 'ТРЕК 01 · CONTINUE',
+      tone: 'yellow', tag: 'ТРЕК 01',
     },
     {
       no: '02', level: 'A1', uk: 'На полігоні', en: 'On the training ground',
       desc: 'Drill commands, weapons handling vocabulary, safety calls, directions and distances.',
-      done: 0, total: 16, tone: 'cream', tag: 'ТРЕК 02',
+      tone: 'cream', tag: 'ТРЕК 02',
     },
     {
       no: '03', level: 'A1 → A2', uk: 'Медична мова', en: 'Medical language',
       desc: 'Casualty calls, MARCH vocabulary, body parts, evacuation phrases. For medics and everyone else.',
-      done: 2, total: 17, tone: 'cream', tag: 'ТРЕК 03',
+      tone: 'cream', tag: 'ТРЕК 03',
     },
     {
       no: '04', level: 'B1', uk: 'Мова інструктора', en: "Instructor's toolkit",
       desc: 'Teaching through an interpreter, giving corrections, classroom + range instructions in Ukrainian.',
-      done: 0, total: 12, tone: 'blue', tag: 'ТРЕК 04 · FOR INSTRUCTORS',
+      tone: 'blue', tag: 'ТРЕК 04 · FOR INSTRUCTORS',
     },
   ];
 
   const SCENARIOS = [
     {
-      track: '01', no: '01', of: '38', category: 'FIRST WEEK',
+      track: '01', category: 'FIRST WEEK',
       uk: 'Знайомство.', en: 'Introductions.',
       lines: [
         { lang: 'УК', uk: 'Я — сержант Андрій. Позивний «Сокіл».', tr: 'ya — serzhant andrii. pozyvnyi "sokil"', en: 'I am sergeant Andrii. Call sign "Sokil".' },
@@ -127,7 +129,7 @@
       },
     },
     {
-      track: '02', no: '04', of: '38', category: 'TRAINING GROUND',
+      track: '02', category: 'TRAINING GROUND',
       uk: 'На стрільбищі.', en: 'On the range.',
       lines: [
         { lang: 'УК', uk: 'Зброю на землю! Магазин від’єднати!', tr: 'zbroiu na zemliu! mahazyn vidiednaty!', en: 'Weapon on the ground! Detach the magazine!' },
@@ -147,7 +149,7 @@
       },
     },
     {
-      track: '03', no: '07', of: '38', category: 'MEDICAL',
+      track: '03', category: 'MEDICAL',
       uk: 'Поранений.', en: 'Casualty.',
       lines: [
         { lang: 'УК', uk: 'Маємо пораненого! Потрібен медик!', tr: 'maiemo poranenoho! potriben medyk!', en: 'We have a casualty! We need a medic!' },
@@ -167,7 +169,7 @@
       },
     },
     {
-      track: '04', no: '12', of: '38', category: 'INSTRUCTOR',
+      track: '04', category: 'INSTRUCTOR',
       uk: 'Перше заняття.', en: 'First class.',
       lines: [
         { lang: 'УК', uk: 'Слухай наказ. Повторюй за мною.', tr: 'slukhai nakaz. povtoriui za mnoiu', en: 'Listen to the order. Repeat after me.' },

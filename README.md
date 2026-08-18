@@ -67,7 +67,8 @@ audio is committed and served statically.
 - Until `npm run tts` has been run (or human recordings added), audio falls back
   to the browser's speech synthesis; the design calls for native-speaker
   recordings, especially for shouted commands.
-- The language switcher (`EN ▾`) is presentational — ES/PT copy exists per term, but
-  there is no UI-language routing yet.
-- Term counts on the rail are real counts of what's in `data.js` (~55 terms), not the
-  2 400 the design mocks up.
+- The `EN ▾` switcher changes the *translation* language per term; UI chrome
+  (headings, buttons) stays Ukrainian/English and has no routing per language.
+- Every count on the site (home stats, section rail, track progress, scenario
+  position) is computed from `data.js` and localStorage — growing the content
+  grows the numbers, no copy to update.
