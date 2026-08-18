@@ -36,14 +36,16 @@ const { AZURE_SPEECH_KEY, AZURE_SPEECH_REGION, GOOGLE_TTS_KEY, TTS_VOICE } = pro
 // ── collect every string the UI passes to the audio player ──
 const sandbox = { window: {} };
 vm.runInNewContext(await readFile(path.join(root, 'src', 'data.js'), 'utf8'), sandbox);
-const { TERMS, SCENARIO } = sandbox.window.PK;
+const { TERMS, SCENARIOS } = sandbox.window.PK;
 
 const texts = new Set();
 for (const t of TERMS) texts.add(t.uk);
-for (const l of SCENARIO.lines) {
-  // УК lines play the line itself; EN lines play the Ukrainian in `tr`
-  // (mirrors the data-say logic in app.js).
-  texts.add(l.lang === 'УК' ? l.uk : l.tr.replace(/\s*\[.*\]$/, ''));
+for (const scen of SCENARIOS) {
+  for (const l of scen.lines) {
+    // УК lines play the line itself; EN lines play the Ukrainian in `tr`
+    // (mirrors the data-say logic in app.js).
+    texts.add(l.lang === 'УК' ? l.uk : l.tr.replace(/\s*\[.*\]$/, ''));
+  }
 }
 
 // ── providers ──

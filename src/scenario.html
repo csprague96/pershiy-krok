@@ -31,12 +31,12 @@
 <main class="wrap">
   <div class="scenario-head">
     <div style="display:flex;flex-direction:column;gap:10px">
-      <span class="kicker">Сценарій 07 / 38 · Medical</span>
-      <h1>Поранений.<br><span class="hl">Casualty.</span></h1>
+      <span class="kicker" id="scen-kicker"></span>
+      <h1 id="scen-title"></h1>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-      <span class="note mono" id="phrase-count" style="color:var(--grey-2)">phrases learned · 9 / 14</span>
-      <div class="meter"><i id="meter" style="width:64%"></i></div>
+      <span class="note mono" id="phrase-count" style="color:var(--grey-2)"></span>
+      <div class="meter"><i id="meter" style="width:0%"></i></div>
     </div>
   </div>
 
@@ -50,11 +50,11 @@
       </div>
       <div class="drill">
         <span class="kicker" style="color:var(--grey-3)">Швидкий дрил · Quick drill</span>
-        <span class="q">How do you shout “tourniquet”?</span>
+        <span class="q" id="drill-q"></span>
         <div id="drill-options" style="display:flex;flex-direction:column;gap:6px"></div>
         <span class="verdict" id="drill-verdict"></span>
       </div>
-      <a href="/course" style="font:600 14px var(--sans);color:var(--yellow);text-align:right;text-decoration:none">Наступний сценарій →</a>
+      <a href="/course" id="next-scen" style="font:600 14px var(--sans);color:var(--yellow);text-align:right;text-decoration:none">Наступний сценарій →</a>
     </aside>
   </div>
 </main>

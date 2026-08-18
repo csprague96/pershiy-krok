@@ -105,27 +105,87 @@
     },
   ];
 
-  const SCENARIO = {
-    no: '07', of: '38', category: 'MEDICAL',
-    uk: 'Поранений.', en: 'Casualty.',
-    learned: 9, phrases: 14,
-    lines: [
-      { lang: 'УК', uk: 'Маємо пораненого! Потрібен медик!', tr: 'maiemo poranenoho! potriben medyk!', en: 'We have a casualty! We need a medic!' },
-      { lang: 'EN', uk: 'Where is he hit?', tr: 'Куди його поранено? [kudy yoho poraneno?]', en: '' },
-      { lang: 'УК', uk: 'Нога. Наклади джгут!', tr: 'noha. naklady dzhhut!', en: 'The leg. Apply a tourniquet!' },
-      { lang: 'EN', uk: 'Tourniquet on. Calling for evacuation.', tr: 'Джгут накладено. Викликаю евакуацію.', en: '' },
-      { lang: 'УК', uk: 'Ноші сюди! Швидше!', tr: 'noshi siudy! shvydshe!', en: 'Stretcher over here! Faster!' },
-    ],
-    keyTerms: ['поранений', 'медик', 'джгут', 'нога'],
-    drill: {
-      q: 'How do you shout “tourniquet”?',
-      options: [
-        { label: 'укриття', right: false },
-        { label: 'джгут', right: true },
-        { label: 'звання', right: false },
+  const SCENARIOS = [
+    {
+      track: '01', no: '01', of: '38', category: 'FIRST WEEK',
+      uk: 'Знайомство.', en: 'Introductions.',
+      lines: [
+        { lang: 'УК', uk: 'Я — сержант Андрій. Позивний «Сокіл».', tr: 'ya — serzhant andrii. pozyvnyi "sokil"', en: 'I am sergeant Andrii. Call sign "Sokil".' },
+        { lang: 'EN', uk: 'Nice to meet you. I am a volunteer.', tr: 'Дуже приємно. Я — доброволець. [duzhe pryiemno. ya — dobrovolets]', en: '' },
+        { lang: 'УК', uk: 'Зрозумів. Говориш українською?', tr: 'zrozumiv. hovorysh ukrainskoiu?', en: 'Understood. Do you speak Ukrainian?' },
+        { lang: 'EN', uk: 'A little. Slowly, please.', tr: 'Трохи. Повільно, будь ласка. [trokhy. povilno, bud laska]', en: '' },
+        { lang: 'УК', uk: 'Добре. Дякую, побратиме!', tr: 'dobre. diakuiu, pobratyme!', en: 'Good. Thank you, brother!' },
       ],
+      keyTerms: ['сержант', 'позивний', 'будь ласка', 'дякую'],
+      drill: {
+        q: 'How do you say “thank you”?',
+        options: [
+          { label: 'дякую', right: true },
+          { label: 'вода', right: false },
+          { label: 'наказ', right: false },
+        ],
+      },
     },
-  };
+    {
+      track: '02', no: '04', of: '38', category: 'TRAINING GROUND',
+      uk: 'На стрільбищі.', en: 'On the range.',
+      lines: [
+        { lang: 'УК', uk: 'Зброю на землю! Магазин від’єднати!', tr: 'zbroiu na zemliu! mahazyn vidiednaty!', en: 'Weapon on the ground! Detach the magazine!' },
+        { lang: 'EN', uk: 'Magazine off. Weapon is clear.', tr: 'Магазин знято. Зброя розряджена. [mahazyn zniato. zbroia rozriadzhena]', en: '' },
+        { lang: 'УК', uk: 'Готовий? Набої — двадцять.', tr: 'hotovyi? naboi — dvadtsiat', en: 'Ready? Twenty rounds.' },
+        { lang: 'УК', uk: 'Вогонь!', tr: 'vohon!', en: 'Fire!' },
+        { lang: 'УК', uk: 'Стій! Не стріляти!', tr: 'stii! ne striliaty!', en: 'Halt! Cease fire!' },
+      ],
+      keyTerms: ['зброя', 'магазин', 'набої', 'Вогонь!'],
+      drill: {
+        q: 'How do you shout “Fire!”?',
+        options: [
+          { label: 'Стій!', right: false },
+          { label: 'Вогонь!', right: true },
+          { label: 'Лягай!', right: false },
+        ],
+      },
+    },
+    {
+      track: '03', no: '07', of: '38', category: 'MEDICAL',
+      uk: 'Поранений.', en: 'Casualty.',
+      lines: [
+        { lang: 'УК', uk: 'Маємо пораненого! Потрібен медик!', tr: 'maiemo poranenoho! potriben medyk!', en: 'We have a casualty! We need a medic!' },
+        { lang: 'EN', uk: 'Where is he hit?', tr: 'Куди його поранено? [kudy yoho poraneno?]', en: '' },
+        { lang: 'УК', uk: 'Нога. Наклади джгут!', tr: 'noha. naklady dzhhut!', en: 'The leg. Apply a tourniquet!' },
+        { lang: 'EN', uk: 'Tourniquet on. Calling for evacuation.', tr: 'Джгут накладено. Викликаю евакуацію.', en: '' },
+        { lang: 'УК', uk: 'Ноші сюди! Швидше!', tr: 'noshi siudy! shvydshe!', en: 'Stretcher over here! Faster!' },
+      ],
+      keyTerms: ['поранений', 'медик', 'джгут', 'нога'],
+      drill: {
+        q: 'How do you shout “tourniquet”?',
+        options: [
+          { label: 'укриття', right: false },
+          { label: 'джгут', right: true },
+          { label: 'звання', right: false },
+        ],
+      },
+    },
+    {
+      track: '04', no: '12', of: '38', category: 'INSTRUCTOR',
+      uk: 'Перше заняття.', en: 'First class.',
+      lines: [
+        { lang: 'УК', uk: 'Слухай наказ. Повторюй за мною.', tr: 'slukhai nakaz. povtoriui za mnoiu', en: 'Listen to the order. Repeat after me.' },
+        { lang: 'EN', uk: 'Understood. Say again, please.', tr: 'Зрозумів. Повторіть, будь ласка. [zrozumiv. povtorit, bud laska]', en: '' },
+        { lang: 'УК', uk: 'Повільно. Ще раз. Швидше!', tr: 'povilno. shche raz. shvydshe!', en: 'Slowly. Once more. Faster!' },
+        { lang: 'УК', uk: 'Добре. Час — п’ять хвилин. Готовий?', tr: 'dobre. chas — piat khvylyn. hotovyi?', en: 'Good. Five minutes. Ready?' },
+      ],
+      keyTerms: ['наказ', 'Повторіть.', 'час', 'Готовий?'],
+      drill: {
+        q: 'How do you ask someone to say it again?',
+        options: [
+          { label: 'Повторіть.', right: true },
+          { label: 'Швидше!', right: false },
+          { label: 'Тримай позицію!', right: false },
+        ],
+      },
+    },
+  ];
 
-  window.PK = { SECTIONS, TERMS, TRACKS, SCENARIO };
+  window.PK = { SECTIONS, TERMS, TRACKS, SCENARIOS };
 })();

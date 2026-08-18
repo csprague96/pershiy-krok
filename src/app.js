@@ -1,9 +1,64 @@
 /* Перший Крок — page behaviour. No framework, no build step beyond the stamper. */
 (function () {
-  const { SECTIONS, TERMS, TRACKS, SCENARIO } = window.PK || {};
+  const { SECTIONS, TERMS, TRACKS, SCENARIOS } = window.PK || {};
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  /* ── Translation language (EN / ES / PT) ───────────────────
+     One target language at a time; the other two show in expanded rows.
+     Persisted; every page section that renders translations re-renders on
+     change via the `rerenders` list. */
+  const LANGS = { en: 'EN', es: 'ES', pt: 'PT' };
+  let lang = localStorage.getItem('pk-lang');
+  if (!LANGS[lang]) lang = 'en';
+  const otherLangs = () => Object.keys(LANGS).filter((k) => k !== lang);
+  const rerenders = [];
+
+  const langBtn = $('.lang');
+  if (langBtn) {
+    const wrap = document.createElement('span');
+    wrap.className = 'lang-wrap';
+    langBtn.replaceWith(wrap);
+    wrap.append(langBtn);
+    langBtn.setAttribute('aria-haspopup', 'menu');
+    langBtn.setAttribute('aria-expanded', 'false');
+
+    const menu = document.createElement('div');
+    menu.className = 'lang-menu';
+    menu.hidden = true;
+    menu.setAttribute('role', 'menu');
+    wrap.append(menu);
+
+    const paint = () => {
+      langBtn.textContent = `${LANGS[lang]} ▾`;
+      menu.innerHTML = Object.entries(LANGS)
+        .map(([k, v]) => `<button type="button" role="menuitem" data-pick="${k}" aria-pressed="${k === lang}">${v}</button>`)
+        .join('');
+    };
+    paint();
+
+    langBtn.addEventListener('click', () => {
+      menu.hidden = !menu.hidden;
+      langBtn.setAttribute('aria-expanded', String(!menu.hidden));
+    });
+    menu.addEventListener('click', (e) => {
+      const pick = e.target.closest('[data-pick]');
+      if (!pick) return;
+      lang = pick.dataset.pick;
+      localStorage.setItem('pk-lang', lang);
+      paint();
+      menu.hidden = true;
+      langBtn.setAttribute('aria-expanded', 'false');
+      rerenders.forEach((fn) => fn());
+    });
+    document.addEventListener('click', (e) => {
+      if (!wrap.contains(e.target) && !menu.hidden) {
+        menu.hidden = true;
+        langBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 
   /* ── Build awareness ───────────────────────────────────────
      Each page is stamped at build time (scripts/build.mjs). We render how long
@@ -52,6 +107,7 @@
     .then((m) => { audioManifest = m; })
     .catch(() => {});
   let currentAudio = null;
+
   let ukVoice = null;
   const pickVoice = () => {
     const voices = window.speechSynthesis?.getVoices?.() || [];
@@ -112,12 +168,13 @@
     // Deep links: /glossary?q=джгут from the home search, /glossary#03 from the section cards.
     const params = new URLSearchParams(location.search);
     const hashSec = SECTIONS.some((s) => `#${s.id}` === location.hash) ? location.hash.slice(1) : null;
-    const state = { q: params.get('q') || '', sec: hashSec || '02' };
+    // mode: 'sec' (one section) | 'alpha' (all terms А–Я with letter headers)
+    const state = { q: params.get('q') || '', sec: hashSec || '02', mode: 'sec', letter: null };
     input.value = state.q;
 
     railEl.innerHTML = SECTIONS.map((s) => {
       const n = TERMS.filter((t) => t.sec === s.id).length;
-      return `<button type="button" data-sec="${s.id}" aria-pressed="${s.id === state.sec}">
+      return `<button type="button" data-sec="${s.id}">
         <span>§ ${s.id} ${esc(s.uk)}</span><span class="c">${n}</span></button>`;
     }).join('');
 
@@ -126,24 +183,22 @@
       .map((l) => `<button type="button" data-letter="${esc(l)}">${esc(l)}</button>`)
       .join('');
 
-    const matches = () => {
-      const q = state.q.trim().toLowerCase();
-      if (q) return TERMS.filter((t) => [t.uk, t.tr, t.en, t.es, t.pt].some((v) => v.toLowerCase().includes(q)));
-      return TERMS.filter((t) => t.sec === state.sec);
-    };
+    const byUk = [...TERMS].sort((a, b) => a.uk.localeCompare(b.uk, 'uk'));
 
-    const termHtml = (t, i) => {
+    const termHtml = (t) => {
       const sec = SECTIONS.find((s) => s.id === t.sec);
-      return `<button class="term" type="button" aria-expanded="false" data-i="${i}">
+      const others = otherLangs()
+        .map((k) => `<span><strong>${LANGS[k]}</strong> ${esc(t[k])}</span>`)
+        .join('');
+      return `<button class="term" type="button" aria-expanded="false">
         <span class="term-row">
           <span class="term-uk">${esc(t.uk)}</span>
           <span class="term-tr">[${esc(t.tr)}]</span>
-          <span class="term-en">${esc(t.en)}</span>
+          <span class="term-en">${esc(t[lang])}</span>
           <span class="play" data-say="${esc(t.uk)}" role="button" tabindex="0" aria-label="Play ${esc(t.uk)}">▶</span>
         </span>
         <span class="term-more" hidden>
-          <span><strong>ES</strong> ${esc(t.es)}</span>
-          <span><strong>PT</strong> ${esc(t.pt)}</span>
+          ${others}
           ${t.example ? `<span>«${esc(t.example.uk)}» — “${esc(t.example.en)}”</span>` : ''}
           <span class="src">§${t.sec} ${esc(sec ? sec.uk : '')}</span>
         </span>
@@ -151,39 +206,54 @@
     };
 
     const render = () => {
-      const rows = matches();
+      $$('button', railEl).forEach((b) =>
+        b.setAttribute('aria-pressed', String(state.mode === 'sec' && !state.q.trim() && b.dataset.sec === state.sec)));
+      $$('button', alphaEl).forEach((b) =>
+        b.style.color = state.mode === 'alpha' && b.dataset.letter === state.letter ? 'var(--yellow)' : '');
+
+      const q = state.q.trim().toLowerCase();
+      if (q) {
+        const rows = TERMS.filter((t) =>
+          [t.uk, t.tr, t.en, t.es, t.pt].some((v) => v.toLowerCase().includes(q)));
+        headEl.innerHTML = `<h2>Пошук · Search “${esc(state.q)}”</h2><span class="meta">${rows.length} match${rows.length === 1 ? '' : 'es'} across all sections</span>`;
+        list.innerHTML = rows.length
+          ? rows.map(termHtml).join('')
+          : '<p class="empty">Нічого не знайдено · nothing matched — try the Cyrillic, the transliteration, or your own language.</p>';
+        return;
+      }
+
+      if (state.mode === 'alpha') {
+        headEl.innerHTML = `<h2>А–Я — the whole glossary</h2><span class="meta">${TERMS.length} terms · alphabetical</span>`;
+        list.innerHTML = letters.map((l) => {
+          const group = byUk.filter((t) => t.letter === l);
+          return `<div class="letter" id="L-${esc(l)}"><span>${esc(l)}</span><span class="bar"></span><span class="n">${group.length} term${group.length === 1 ? '' : 's'}</span></div>`
+            + group.map(termHtml).join('');
+        }).join('');
+        return;
+      }
+
       const sec = SECTIONS.find((s) => s.id === state.sec);
-      headEl.innerHTML = state.q
-        ? `<h2>Пошук · Search “${esc(state.q)}”</h2><span class="meta">${rows.length} match${rows.length === 1 ? '' : 'es'} across all sections</span>`
-        : `<h2>§ ${sec.id} — ${esc(sec.uk)} · ${esc(sec.en)}</h2><span class="meta">${rows.length} terms</span>`;
-      list.innerHTML = rows.length
-        ? rows.map(termHtml).join('')
-        : '<p class="empty">Нічого не знайдено · nothing matched — try the Cyrillic, the transliteration, or your own language.</p>';
-      list.dataset.rows = JSON.stringify(rows.map((t) => TERMS.indexOf(t)));
+      const rows = TERMS.filter((t) => t.sec === state.sec);
+      headEl.innerHTML = `<h2>§ ${sec.id} — ${esc(sec.uk)} · ${esc(sec.en)}</h2><span class="meta">${rows.length} terms</span>`;
+      list.innerHTML = rows.map(termHtml).join('');
     };
+    rerenders.push(render);
 
     railEl.addEventListener('click', (e) => {
       const btn = e.target.closest('button[data-sec]');
       if (!btn) return;
-      state.sec = btn.dataset.sec;
-      state.q = '';
+      Object.assign(state, { sec: btn.dataset.sec, mode: 'sec', letter: null, q: '' });
       input.value = '';
-      $$('button', railEl).forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
       render();
     });
 
     alphaEl.addEventListener('click', (e) => {
       const btn = e.target.closest('button[data-letter]');
       if (!btn) return;
-      state.q = '';
+      Object.assign(state, { mode: 'alpha', letter: btn.dataset.letter, q: '' });
       input.value = '';
       render();
-      const target = $$('.term-uk', list).find((el) => el.textContent[0].toUpperCase() === btn.dataset.letter);
-      if (target) target.closest('.term').scrollIntoView({ block: 'center' });
-      else {
-        state.q = btn.dataset.letter.toLowerCase();
-        render();
-      }
+      $(`#L-${CSS.escape(btn.dataset.letter)}`)?.scrollIntoView({ block: 'start' });
     });
 
     input.addEventListener('input', () => { state.q = input.value; render(); });
@@ -200,17 +270,25 @@
     render();
   }
 
-  /* ── Home: word of the day (stable per UTC day) ─────────── */
+  /* ── Home: word of the day + sample-ticket translations ─── */
   const wotd = $('#wotd');
   if (wotd && TERMS) {
-    const day = Math.floor(Date.now() / 86400000);
-    const t = TERMS[day % TERMS.length];
-    wotd.innerHTML = `
-      <span class="kicker" style="color:var(--grey-3)">Слово дня · Word of the day</span>
-      <span style="font:700 30px var(--display)">${esc(t.uk)}</span>
-      <span class="term-tr">[${esc(t.tr)}]</span>
-      <span style="font:600 16px var(--sans)">${esc(t.en)}</span>
-      <button class="play" type="button" data-say="${esc(t.uk)}" aria-label="Play ${esc(t.uk)}">▶</button>`;
+    const renderHome = () => {
+      const day = Math.floor(Date.now() / 86400000);
+      const t = TERMS[day % TERMS.length];
+      wotd.innerHTML = `
+        <span class="kicker" style="color:var(--grey-3)">Слово дня · Word of the day</span>
+        <span style="font:700 30px var(--display)">${esc(t.uk)}</span>
+        <span class="term-tr">[${esc(t.tr)}]</span>
+        <span style="font:600 16px var(--sans)">${esc(t[lang])}</span>
+        <button class="play" type="button" data-say="${esc(t.uk)}" aria-label="Play ${esc(t.uk)}">▶</button>`;
+      $$('[data-term]').forEach((el) => {
+        const term = TERMS.find((x) => x.uk === el.dataset.term);
+        if (term) el.textContent = term[lang];
+      });
+    };
+    rerenders.push(renderHome);
+    renderHome();
   }
 
   /* ── Courses ───────────────────────────────────────────── */
@@ -224,7 +302,7 @@
     tracksEl.innerHTML = TRACKS.map((t, i) => {
       const s = tone[t.tone];
       const pct = Math.round((t.done / t.total) * 100);
-      return `<a class="ticket track ${s.cls} tilt-${(i % 4) + 1}" href="/scenario">
+      return `<a class="ticket track ${s.cls} tilt-${(i % 4) + 1}" href="/scenario?track=${t.no}">
         <span class="top"><span class="no" style="color:${s.no}">${esc(t.tag)}</span><span class="lvl" style="color:${s.lvl}">${esc(t.level)}</span></span>
         <h2>${esc(t.uk)}<br>${esc(t.en)}</h2>
         <p>${esc(t.desc)}</p>
@@ -239,8 +317,25 @@
 
   /* ── Scenario lesson ───────────────────────────────────── */
   const scriptEl = $('#script');
-  if (scriptEl && SCENARIO) {
-    let at = 2; // lines before this are already worked through
+  if (scriptEl && SCENARIOS) {
+    const track = new URLSearchParams(location.search).get('track');
+    const scen = SCENARIOS.find((s) => s.track === track) || SCENARIOS.find((s) => s.track === '03');
+    const next = SCENARIOS[(SCENARIOS.indexOf(scen) + 1) % SCENARIOS.length];
+    const nextHref = `/scenario?track=${next.track}`;
+    const total = scen.lines.length;
+
+    // Progress is real: how many lines you've repeated, kept per scenario.
+    const storeKey = `pk-scen-${scen.track}`;
+    let at = Math.min(parseInt(localStorage.getItem(storeKey) || '0', 10) || 0, total);
+
+    // Head
+    document.title = `${scen.uk} · ${scen.en} — Сценарій ${scen.no} — Перший Крок`;
+    $('#scen-kicker').textContent = `Сценарій ${scen.no} / ${scen.of} · ${scen.category}`;
+    $('#scen-title').innerHTML = `${esc(scen.uk)}<br><span class="hl">${esc(scen.en)}</span>`;
+    const nextLink = $('#next-scen');
+    nextLink.href = nextHref;
+    nextLink.textContent = `Наступний сценарій: ${next.uk} →`;
+
     const meterEl = $('#meter');
     const countEl = $('#phrase-count');
 
@@ -252,6 +347,7 @@
           <span>next line unlocks after you repeat the phrase…</span>
         </div>`;
       }
+      const sayText = l.lang === 'УК' ? l.uk : l.tr.replace(/\s*\[.*\]$/, '');
       return `<div class="line" data-state="${state}">
         <span class="who" data-lang="${esc(l.lang)}">${esc(l.lang)}</span>
         <span class="body">
@@ -259,7 +355,7 @@
           <span class="tr">${l.lang === 'УК' ? `[${esc(l.tr)}]` : esc(l.tr)}</span>
           ${l.en ? `<span class="en">${esc(l.en)}</span>` : ''}
           ${state === 'current' ? `<span class="acts">
-            <button class="btn--ink" type="button" data-say="${esc(l.lang === 'УК' ? l.uk : l.tr.replace(/\s*\[.*\]$/, ''))}">▶ Слухати</button>
+            <button class="btn--ink" type="button" data-say="${esc(sayText)}">▶ Слухати</button>
             <button class="btn--ghost-ink" type="button" data-repeat>🎙 Повторити</button>
           </span>` : ''}
         </span>
@@ -268,17 +364,35 @@
     };
 
     const render = () => {
-      // Show what's been worked through, the current line, and one locked teaser.
-      scriptEl.innerHTML = SCENARIO.lines.slice(0, at + 2).map(lineHtml).join('');
-      const learned = Math.min(SCENARIO.phrases, SCENARIO.learned + Math.max(0, at - 2));
-      const pct = Math.round((learned / SCENARIO.phrases) * 100);
+      const doneAll = at >= total;
+      // Worked-through lines, the current one, and a single locked teaser.
+      let html = scen.lines.slice(0, Math.min(at + 2, total)).map(lineHtml).join('');
+      if (doneAll) {
+        html += `<div class="line" data-state="current" style="flex-direction:column;align-items:stretch;gap:10px">
+          <span style="font:700 19px var(--display)">Сценарій завершено ✓</span>
+          <span style="font:600 14px var(--sans)">All ${total} lines repeated. Well done.</span>
+          <span class="acts">
+            <a class="btn--ink" href="${nextHref}" style="text-decoration:none">Наступний сценарій →</a>
+            <button class="btn--ghost-ink" type="button" data-restart>↺ Спочатку</button>
+          </span>
+        </div>`;
+      }
+      scriptEl.innerHTML = html;
+      const pct = Math.round((at / total) * 100);
       if (meterEl) meterEl.style.width = `${pct}%`;
-      if (countEl) countEl.textContent = `phrases learned · ${learned} / ${SCENARIO.phrases}`;
+      if (countEl) countEl.textContent = `lines repeated · ${at} / ${total}`;
     };
 
     scriptEl.addEventListener('click', (e) => {
+      if (e.target.closest('[data-restart]')) {
+        at = 0;
+        localStorage.setItem(storeKey, '0');
+        render();
+        return;
+      }
       if (!e.target.closest('[data-repeat]')) return;
-      at = Math.min(at + 1, SCENARIO.lines.length - 1);
+      at = Math.min(at + 1, total);
+      localStorage.setItem(storeKey, String(at));
       render();
       $('.line[data-state="current"]', scriptEl)?.scrollIntoView({ block: 'nearest' });
     });
@@ -287,17 +401,22 @@
 
     const keyEl = $('#keyterms');
     if (keyEl && TERMS) {
-      keyEl.innerHTML = SCENARIO.keyTerms
-        .map((uk) => TERMS.find((t) => t.uk === uk))
-        .filter(Boolean)
-        .map((t) => `<li><strong>${esc(t.uk)}</strong> <span class="tr">[${esc(t.tr)}]</span> — ${esc(t.en)}</li>`)
-        .join('');
+      const renderKeys = () => {
+        keyEl.innerHTML = scen.keyTerms
+          .map((uk) => TERMS.find((t) => t.uk === uk))
+          .filter(Boolean)
+          .map((t) => `<li><strong>${esc(t.uk)}</strong> <span class="tr">[${esc(t.tr)}]</span> — ${esc(t[lang])}</li>`)
+          .join('');
+      };
+      rerenders.push(renderKeys);
+      renderKeys();
     }
 
     const drillEl = $('#drill-options');
     if (drillEl) {
       const verdict = $('#drill-verdict');
-      drillEl.innerHTML = SCENARIO.drill.options
+      $('#drill-q').textContent = scen.drill.q;
+      drillEl.innerHTML = scen.drill.options
         .map((o) => `<button type="button" data-answer="${o.right ? 'right' : 'wrong'}">${esc(o.label)}</button>`)
         .join('');
       drillEl.addEventListener('click', (e) => {
