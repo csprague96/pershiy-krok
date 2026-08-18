@@ -1,0 +1,14 @@
+{
+  "name": "pershyi-krok",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Перший Крок — military Ukrainian for foreign volunteers and instructors",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

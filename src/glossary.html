@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Словник · Glossary — Перший Крок</title>
+<meta name="description" content="Searchable Ukrainian military glossary with transliteration, English, Español and Português, grouped by section.">
+<meta name="pk-build" content="{{BUILD_COMMIT_FULL}}">
+<meta name="theme-color" content="#141517">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script src="/data.js" defer></script>
+<script src="/app.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="mark" href="/" aria-label="Перший Крок — home"><span>ПК</span></a>
+  <a class="wordmark" href="/">Перший Крок</a>
+  <nav aria-label="Primary">
+    <a href="/glossary" aria-current="page">Словник</a>
+    <a href="/course">Курс</a>
+    <a href="/scenario">Сценарії</a>
+  </nav>
+  <button class="lang" type="button">EN ▾</button>
+</header>
+
+<main class="wrap">
+  <div class="pagehead">
+    <h1>СЛОВНИК</h1>
+    <span class="pair"><span class="uk">UK</span><span style="color:var(--yellow)">⇄</span><span class="rest">EN · ES · PT</span></span>
+    <span class="note">click a row to open translations and an example</span>
+  </div>
+
+  <form class="search" id="search-form" role="search" style="margin-bottom:8px">
+    <input id="q" name="q" type="search" placeholder="Search in any language… “джгут”, “tourniquet”, “torniquete”" aria-label="Search terms">
+    <button type="submit">Шукати</button>
+  </form>
+
+  <div class="alpha" id="alpha" aria-label="Jump to letter"></div>
+
+  <div class="glossary">
+    <nav class="rail" id="rail" aria-label="Sections"></nav>
+    <div class="terms">
+      <div class="terms-head" id="terms-head"></div>
+      <div id="terms"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <span>Перший Крок · {{YEAR}} — free for volunteers and instructors.</span>
+  <a class="build" href="/build-info.json" data-env="{{BUILD_ENV}}" data-built-at="{{BUILD_TIME}}"
+     title="branch {{BUILD_BRANCH}} · commit {{BUILD_COMMIT_FULL}} · built {{BUILD_TIME}}">
+    <span class="dot"></span><span>build {{BUILD_STAMP}}</span> <span class="rel" data-build-rel></span>
+  </a>
+</footer>
+
+<nav class="tabbar" aria-label="Mobile">
+  <a href="/"><span class="ico">⌂</span>Головна</a>
+  <a href="/glossary" aria-current="page"><span class="ico">≡</span>Словник</a>
+  <a href="/scenario"><span class="ico">▷</span>Сценарії</a>
+  <a href="/course"><span class="ico">✓</span>Прогрес</a>
+</nav>
+
+</body>
+</html>

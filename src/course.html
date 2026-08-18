@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Курси · Courses — Перший Крок</title>
+<meta name="description" content="Scenario-based Ukrainian tracks with audio: first week in a unit, the training ground, medical language, and an instructor's toolkit.">
+<meta name="pk-build" content="{{BUILD_COMMIT_FULL}}">
+<meta name="theme-color" content="#141517">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script src="/data.js" defer></script>
+<script src="/app.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="mark" href="/" aria-label="Перший Крок — home"><span>ПК</span></a>
+  <a class="wordmark" href="/">Перший Крок</a>
+  <nav aria-label="Primary">
+    <a href="/glossary">Словник</a>
+    <a href="/course" aria-current="page">Курс</a>
+    <a href="/scenario">Сценарії</a>
+  </nav>
+  <button class="lang" type="button">EN ▾</button>
+</header>
+
+<main class="wrap">
+  <div class="pagehead">
+    <h1>КУРСИ</h1>
+    <span class="note">pick a track — each one is scenario-based, with audio</span>
+  </div>
+
+  <div class="tracks" id="tracks"></div>
+
+  <div class="soon">
+    <span class="tag">СКОРО · SOON</span>
+    <span>Радіозв'язок · Radio comms</span>
+    <span>Документи та штаб · Paperwork &amp; HQ</span>
+    <span style="margin-left:auto;color:var(--grey-3);font:400 12px var(--mono)">request a track →</span>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <span>Перший Крок · {{YEAR}} — free for volunteers and instructors.</span>
+  <a class="build" href="/build-info.json" data-env="{{BUILD_ENV}}" data-built-at="{{BUILD_TIME}}"
+     title="branch {{BUILD_BRANCH}} · commit {{BUILD_COMMIT_FULL}} · built {{BUILD_TIME}}">
+    <span class="dot"></span><span>build {{BUILD_STAMP}}</span> <span class="rel" data-build-rel></span>
+  </a>
+</footer>
+
+<nav class="tabbar" aria-label="Mobile">
+  <a href="/"><span class="ico">⌂</span>Головна</a>
+  <a href="/glossary"><span class="ico">≡</span>Словник</a>
+  <a href="/scenario"><span class="ico">▷</span>Сценарії</a>
+  <a href="/course" aria-current="page"><span class="ico">✓</span>Прогрес</a>
+</nav>
+
+</body>
+</html>
