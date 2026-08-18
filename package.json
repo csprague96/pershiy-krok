@@ -6,6 +6,7 @@
   "description": "Перший Крок — military Ukrainian for foreign volunteers and instructors",
   "scripts": {
     "build": "node scripts/build.mjs",
+    "tts": "node scripts/tts.mjs",
     "dev": "node scripts/build.mjs && node scripts/serve.mjs"
   },
   "engines": {

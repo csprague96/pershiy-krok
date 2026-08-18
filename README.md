@@ -47,10 +47,26 @@ import the repo and deploy.
 | `src/app.js` | Behaviour: search, filters, drill, audio, build awareness |
 | `src/styles.css` | Design tokens and components |
 
+## Audio
+
+`npm run tts` pre-generates an MP3 for every Ukrainian phrase the UI can play
+(glossary terms + scenario lines) into `src/audio/`, plus a `manifest.json`
+mapping text → file. The front end prefers those files and falls back to browser
+speech synthesis for any phrase without one — so the site works mid-migration,
+and a **human recording dropped in at the same filename simply wins** (existing
+files are never overwritten; re-runs only synthesize what's missing).
+
+Credentials go in `.env` (see `.env.example`): Azure Speech
+(`uk-UA-OstapNeural`, default) or Google Cloud TTS (`uk-UA-Wavenet-A`). The
+whole current corpus is a few thousand characters — comfortably inside either
+free tier. This is a manual step, never part of the Vercel build; generated
+audio is committed and served statically.
+
 ## Known gaps
 
-- Audio uses the browser's speech synthesis with a Ukrainian voice when one is
-  installed; the design calls for native-speaker recordings.
+- Until `npm run tts` has been run (or human recordings added), audio falls back
+  to the browser's speech synthesis; the design calls for native-speaker
+  recordings, especially for shouted commands.
 - The language switcher (`EN ▾`) is presentational — ES/PT copy exists per term, but
   there is no UI-language routing yet.
 - Term counts on the rail are real counts of what's in `data.js` (~55 terms), not the

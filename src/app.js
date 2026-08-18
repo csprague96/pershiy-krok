@@ -43,8 +43,15 @@
   }
 
   /* ── Pronunciation ─────────────────────────────────────────
-     Native-speaker recordings are not in this build; until they are we fall
-     back to speech synthesis with a Ukrainian voice when one is installed. */
+     Pre-generated recordings (scripts/tts.mjs → /audio/) are preferred; any
+     phrase without a file falls back to speech synthesis with a Ukrainian
+     voice when one is installed. */
+  let audioManifest = {};
+  fetch('/audio/manifest.json')
+    .then((r) => (r.ok ? r.json() : {}))
+    .then((m) => { audioManifest = m; })
+    .catch(() => {});
+  let currentAudio = null;
   let ukVoice = null;
   const pickVoice = () => {
     const voices = window.speechSynthesis?.getVoices?.() || [];
@@ -71,11 +78,28 @@
     speechSynthesis.speak(u);
   }
 
+  function play(text, btn) {
+    const file = audioManifest[text];
+    if (!file) return say(text, btn);
+    if (currentAudio) currentAudio.pause();
+    window.speechSynthesis?.cancel();
+    const audio = new Audio(`/audio/${file}`);
+    currentAudio = audio;
+    if (btn) {
+      btn.dataset.playing = 'true';
+      const clear = () => { btn.dataset.playing = 'false'; };
+      audio.addEventListener('ended', clear);
+      audio.addEventListener('pause', clear);
+      audio.addEventListener('error', () => { clear(); say(text, btn); }, { once: true });
+    }
+    audio.play().catch(() => say(text, btn));
+  }
+
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-say]');
     if (!btn) return;
     e.stopPropagation();
-    say(btn.dataset.say, btn);
+    play(btn.dataset.say, btn);
   });
 
   /* ── Glossary ──────────────────────────────────────────── */
@@ -284,7 +308,7 @@
         const right = btn.dataset.answer === 'right';
         if (right) btn.textContent = `${btn.textContent.replace(' ✓', '')} ✓`;
         verdict.textContent = right ? 'Правильно · correct' : 'Ще раз · try again';
-        if (right) say(btn.textContent.replace(' ✓', ''), null);
+        if (right) play(btn.textContent.replace(' ✓', ''), null);
       });
     }
   }
