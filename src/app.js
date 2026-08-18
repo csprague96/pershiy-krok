@@ -286,6 +286,13 @@
         const term = TERMS.find((x) => x.uk === el.dataset.term);
         if (term) el.textContent = term[lang];
       });
+      // Real counts, straight from the data — they grow as data.js does.
+      const stats = $('#stats');
+      if (stats) {
+        const n = SCENARIOS.length;
+        const scenWord = n === 1 ? 'сценарій' : n < 5 ? 'сценарії' : 'сценаріїв';
+        stats.innerHTML = `${TERMS.length} термінів<br>${n} ${scenWord}`;
+      }
     };
     rerenders.push(renderHome);
     renderHome();
@@ -301,16 +308,23 @@
     };
     tracksEl.innerHTML = TRACKS.map((t, i) => {
       const s = tone[t.tone];
-      const pct = Math.round((t.done / t.total) * 100);
+      // Real progress: lines repeated in this track's scenario (same
+      // localStorage the scenario page writes).
+      const scen = SCENARIOS.find((x) => x.track === t.no);
+      const total = scen.lines.length;
+      const done = Math.min(parseInt(localStorage.getItem(`pk-scen-${t.no}`) || '0', 10) || 0, total);
+      const pct = Math.round((done / total) * 100);
+      const tag = t.tag + (done >= total ? ' · DONE ✓' : done ? ' · CONTINUE' : '');
+      const cta = done >= total ? 'Ще раз · Again' : done ? 'Продовжити · Continue' : 'Почати · Start';
       return `<a class="ticket track ${s.cls} tilt-${(i % 4) + 1}" href="/scenario?track=${t.no}">
-        <span class="top"><span class="no" style="color:${s.no}">${esc(t.tag)}</span><span class="lvl" style="color:${s.lvl}">${esc(t.level)}</span></span>
+        <span class="top"><span class="no" style="color:${s.no}">${esc(tag)}</span><span class="lvl" style="color:${s.lvl}">${esc(t.level)}</span></span>
         <h2>${esc(t.uk)}<br>${esc(t.en)}</h2>
         <p>${esc(t.desc)}</p>
         <span class="progress">
           <span class="bar" style="background:${s.bar}"><i style="width:${pct}%;background:${s.fill}"></i></span>
-          <span class="n">${t.done}/${t.total} lessons</span>
+          <span class="n">${done}/${total} lines</span>
         </span>
-        <span class="cta" style="${s.cta}">${t.done ? 'Продовжити · Continue' : 'Почати · Start'} →</span>
+        <span class="cta" style="${s.cta}">${cta} →</span>
       </a>`;
     }).join('');
   }
@@ -328,9 +342,10 @@
     const storeKey = `pk-scen-${scen.track}`;
     let at = Math.min(parseInt(localStorage.getItem(storeKey) || '0', 10) || 0, total);
 
-    // Head
-    document.title = `${scen.uk} · ${scen.en} — Сценарій ${scen.no} — Перший Крок`;
-    $('#scen-kicker').textContent = `Сценарій ${scen.no} / ${scen.of} · ${scen.category}`;
+    // Head — position is the scenario's real index, not a mocked "07 / 38".
+    const pos = String(SCENARIOS.indexOf(scen) + 1).padStart(2, '0');
+    document.title = `${scen.uk} · ${scen.en} — Сценарій ${pos} — Перший Крок`;
+    $('#scen-kicker').textContent = `Сценарій ${pos} / ${String(SCENARIOS.length).padStart(2, '0')} · ${scen.category}`;
     $('#scen-title').innerHTML = `${esc(scen.uk)}<br><span class="hl">${esc(scen.en)}</span>`;
     const nextLink = $('#next-scen');
     nextLink.href = nextHref;
