@@ -496,22 +496,22 @@
     const lineHtml = (l, i) => {
       const state = i < at ? 'done' : i === at ? 'current' : 'locked';
       const isUk = l.lang === 'УК';
-      // Foreign lines carry the volunteer's language: label and text follow the picker.
+      // Every line teaches the Ukrainian; the badge shows whose turn it is —
+      // the foreign badge follows the picked language.
       const who = isUk ? 'УК' : LANGS[lang];
-      const main = isUk ? l.uk : (l[lang] || l.en);
       if (state === 'locked') {
         return `<div class="line" data-state="locked">
           <span class="who" data-lang="${esc(l.lang)}" style="background:var(--line);color:var(--grey-3)">${esc(who)}</span>
           <span>${esc(t('scen.locked'))}</span>
         </div>`;
       }
-      const sayText = isUk ? l.uk : l.tr.replace(/\s*\[.*\]$/, '');
-      const gloss = isUk ? (l[lang] || l.en) : '';
+      const sayText = l.uk;
+      const gloss = l[lang] || l.en;
       return `<div class="line" data-state="${state}">
         <span class="who" data-lang="${esc(l.lang)}">${esc(who)}</span>
         <span class="body">
-          <span class="uk">${esc(main)}</span>
-          <span class="tr">${isUk ? `[${esc(l.tr)}]` : esc(l.tr)}</span>
+          <span class="uk">${esc(l.uk)}</span>
+          <span class="tr">[${esc(l.tr)}]</span>
           ${gloss ? `<span class="en">${esc(gloss)}</span>` : ''}
           ${state === 'current' ? `<span class="acts">
             <button class="btn--ink" type="button" data-say="${esc(sayText)}">▶ Слухати · ${esc(t('scen.listen'))}</button>

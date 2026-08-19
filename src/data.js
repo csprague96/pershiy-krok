@@ -129,10 +129,9 @@
     },
   ];
 
-  /* Scenario lines:
-     - УК lines: `uk` is the Ukrainian phrase; en/es/pt are glosses.
-     - Foreign lines (lang 'EN'): en/es/pt is what the volunteer says in their own
-       language; `tr` holds the Ukrainian rendering + transliteration. */
+  /* Scenario lines all teach Ukrainian: `uk` + `tr` are the phrase and its
+     transliteration; en/es/pt are glosses in the reader's language. Foreign
+     lines (lang 'EN') are the volunteer's turn — same shape, different badge. */
   const SCENARIOS = [
     {
       track: '01',
@@ -140,9 +139,9 @@
       uk: 'Знайомство.', en: 'Introductions.', es: 'Presentaciones.', pt: 'Apresentações.',
       lines: [
         { lang: 'УК', uk: 'Я — сержант Андрій. Позивний «Сокіл».', tr: 'ya — serzhant andrii. pozyvnyi "sokil"', en: 'I am sergeant Andrii. Call sign "Sokil".', es: 'Soy el sargento Andrii. Indicativo «Sokil».', pt: 'Sou o sargento Andrii. Indicativo «Sokil».' },
-        { lang: 'EN', en: 'Nice to meet you. I am a volunteer.', es: 'Mucho gusto. Soy voluntario.', pt: 'Muito prazer. Sou voluntário.', tr: 'Дуже приємно. Я — доброволець. [duzhe pryiemno. ya — dobrovolets]' },
+        { lang: 'EN', uk: 'Дуже приємно. Я — доброволець.', tr: 'duzhe pryiemno. ya — dobrovolets', en: 'Nice to meet you. I am a volunteer.', es: 'Mucho gusto. Soy voluntario.', pt: 'Muito prazer. Sou voluntário.' },
         { lang: 'УК', uk: 'Зрозумів. Говориш українською?', tr: 'zrozumiv. hovorysh ukrainskoiu?', en: 'Understood. Do you speak Ukrainian?', es: 'Entendido. ¿Hablas ucraniano?', pt: 'Entendido. Você fala ucraniano?' },
-        { lang: 'EN', en: 'A little. Slowly, please.', es: 'Un poco. Despacio, por favor.', pt: 'Um pouco. Devagar, por favor.', tr: 'Трохи. Повільно, будь ласка. [trokhy. povilno, bud laska]' },
+        { lang: 'EN', uk: 'Трохи. Повільно, будь ласка.', tr: 'trokhy. povilno, bud laska', en: 'A little. Slowly, please.', es: 'Un poco. Despacio, por favor.', pt: 'Um pouco. Devagar, por favor.' },
         { lang: 'УК', uk: 'Добре. Дякую, побратиме!', tr: 'dobre. diakuiu, pobratyme!', en: 'Good. Thank you, brother!', es: 'Bien. ¡Gracias, hermano!', pt: 'Bom. Obrigado, irmão!' },
       ],
       keyTerms: ['сержант', 'позивний', 'будь ласка', 'дякую'],
@@ -161,7 +160,7 @@
       uk: 'На стрільбищі.', en: 'On the range.', es: 'En el campo de tiro.', pt: 'No estande de tiro.',
       lines: [
         { lang: 'УК', uk: 'Зброю на землю! Магазин від’єднати!', tr: 'zbroiu na zemliu! mahazyn vidiednaty!', en: 'Weapon on the ground! Detach the magazine!', es: '¡Arma al suelo! ¡Retira el cargador!', pt: 'Arma no chão! Retire o carregador!' },
-        { lang: 'EN', en: 'Magazine off. Weapon is clear.', es: 'Cargador fuera. Arma descargada.', pt: 'Carregador fora. Arma descarregada.', tr: 'Магазин знято. Зброя розряджена. [mahazyn zniato. zbroia rozriadzhena]' },
+        { lang: 'EN', uk: 'Магазин знято. Зброя розряджена.', tr: 'mahazyn zniato. zbroia rozriadzhena', en: 'Magazine off. Weapon is clear.', es: 'Cargador fuera. Arma descargada.', pt: 'Carregador fora. Arma descarregada.' },
         { lang: 'УК', uk: 'Готовий? Набої — двадцять.', tr: 'hotovyi? naboi — dvadtsiat', en: 'Ready? Twenty rounds.', es: '¿Listo? Veinte cartuchos.', pt: 'Pronto? Vinte cartuchos.' },
         { lang: 'УК', uk: 'Вогонь!', tr: 'vohon!', en: 'Fire!', es: '¡Fuego!', pt: 'Fogo!' },
         { lang: 'УК', uk: 'Стій! Не стріляти!', tr: 'stii! ne striliaty!', en: 'Halt! Cease fire!', es: '¡Alto! ¡Alto el fuego!', pt: 'Alto! Cessar fogo!' },
@@ -182,9 +181,9 @@
       uk: 'Поранений.', en: 'Casualty.', es: 'Baja.', pt: 'Baixa.',
       lines: [
         { lang: 'УК', uk: 'Маємо пораненого! Потрібен медик!', tr: 'maiemo poranenoho! potriben medyk!', en: 'We have a casualty! We need a medic!', es: '¡Tenemos un herido! ¡Necesitamos un sanitario!', pt: 'Temos um ferido! Precisamos de um socorrista!' },
-        { lang: 'EN', en: 'Where is he hit?', es: '¿Dónde está herido?', pt: 'Onde ele foi atingido?', tr: 'Куди його поранено? [kudy yoho poraneno?]' },
+        { lang: 'EN', uk: 'Куди його поранено?', tr: 'kudy yoho poraneno', en: 'Where is he hit?', es: '¿Dónde está herido?', pt: 'Onde ele foi atingido?' },
         { lang: 'УК', uk: 'Нога. Наклади джгут!', tr: 'noha. naklady dzhhut!', en: 'The leg. Apply a tourniquet!', es: 'La pierna. ¡Pon un torniquete!', pt: 'A perna. Aplique um torniquete!' },
-        { lang: 'EN', en: 'Tourniquet on. Calling for evacuation.', es: 'Torniquete puesto. Pido evacuación.', pt: 'Torniquete aplicado. Chamando evacuação.', tr: 'Джгут накладено. Викликаю евакуацію.' },
+        { lang: 'EN', uk: 'Джгут накладено. Викликаю евакуацію.', tr: 'dzhhut nakladeno. vyklykaiu evakuatsiiu', en: 'Tourniquet on. Calling for evacuation.', es: 'Torniquete puesto. Pido evacuación.', pt: 'Torniquete aplicado. Chamando evacuação.' },
         { lang: 'УК', uk: 'Ноші сюди! Швидше!', tr: 'noshi siudy! shvydshe!', en: 'Stretcher over here! Faster!', es: '¡La camilla aquí! ¡Más rápido!', pt: 'Maca aqui! Mais rápido!' },
       ],
       keyTerms: ['поранений', 'медик', 'джгут', 'нога'],
@@ -203,7 +202,7 @@
       uk: 'Перше заняття.', en: 'First class.', es: 'Primera clase.', pt: 'Primeira aula.',
       lines: [
         { lang: 'УК', uk: 'Слухай наказ. Повторюй за мною.', tr: 'slukhai nakaz. povtoriui za mnoiu', en: 'Listen to the order. Repeat after me.', es: 'Escucha la orden. Repite conmigo.', pt: 'Escute a ordem. Repita comigo.' },
-        { lang: 'EN', en: 'Understood. Say again, please.', es: 'Entendido. Repita, por favor.', pt: 'Entendido. Repita, por favor.', tr: 'Зрозумів. Повторіть, будь ласка. [zrozumiv. povtorit, bud laska]' },
+        { lang: 'EN', uk: 'Зрозумів. Повторіть, будь ласка.', tr: 'zrozumiv. povtorit, bud laska', en: 'Understood. Say again, please.', es: 'Entendido. Repita, por favor.', pt: 'Entendido. Repita, por favor.' },
         { lang: 'УК', uk: 'Повільно. Ще раз. Швидше!', tr: 'povilno. shche raz. shvydshe!', en: 'Slowly. Once more. Faster!', es: 'Despacio. Otra vez. ¡Más rápido!', pt: 'Devagar. Mais uma vez. Mais rápido!' },
         { lang: 'УК', uk: 'Добре. Час — п’ять хвилин. Готовий?', tr: 'dobre. chas — piat khvylyn. hotovyi?', en: 'Good. Five minutes. Ready?', es: 'Bien. Cinco minutos. ¿Listo?', pt: 'Bom. Cinco minutos. Pronto?' },
       ],
