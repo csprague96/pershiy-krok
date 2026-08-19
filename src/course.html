@@ -21,9 +21,9 @@
   <a class="mark" href="/" aria-label="Перший Крок — home"><span>ПК</span></a>
   <a class="wordmark" href="/">Перший Крок</a>
   <nav aria-label="Primary">
-    <a href="/glossary">Словник</a>
-    <a href="/course" aria-current="page">Курс</a>
-    <a href="/scenario">Сценарії</a>
+    <a href="/glossary">Словник<span class="g" data-i18n="nav.glossary"></span></a>
+    <a href="/course" aria-current="page">Курс<span class="g" data-i18n="nav.course"></span></a>
+    <a href="/scenario">Сценарії<span class="g" data-i18n="nav.scenarios"></span></a>
   </nav>
   <button class="lang" type="button">EN ▾</button>
 </header>
@@ -31,21 +31,21 @@
 <main class="wrap">
   <div class="pagehead">
     <h1>КУРСИ</h1>
-    <span class="note">pick a track — each one is scenario-based, with audio</span>
+    <span class="note" data-i18n="course.note">pick a track — each one is scenario-based, with audio</span>
   </div>
 
   <div class="tracks" id="tracks"></div>
 
   <div class="soon">
-    <span class="tag">СКОРО · SOON</span>
-    <span>Радіозв'язок · Radio comms</span>
-    <span>Документи та штаб · Paperwork &amp; HQ</span>
-    <a href="https://github.com/csprague96/pershiy-krok/issues/new?title=Track+request" style="margin-left:auto;color:var(--grey-3);font:400 12px var(--mono)">request a track →</a>
+    <span class="tag">СКОРО · <span data-i18n="course.soon">SOON</span></span>
+    <span>Радіозв'язок · <span data-i18n="course.radio">Radio comms</span></span>
+    <span>Документи та штаб · <span data-i18n="course.paper">Paperwork &amp; HQ</span></span>
+    <a href="https://github.com/csprague96/pershiy-krok/issues/new?title=Track+request" style="margin-left:auto;color:var(--grey-3);font:400 12px var(--mono)" data-i18n="course.request">request a track →</a>
   </div>
 </main>
 
 <footer class="site-foot">
-  <span>Перший Крок · {{YEAR}} — free for volunteers and instructors.</span>
+  <span>Перший Крок · {{YEAR}} — <span data-i18n="footer.free">free for volunteers and instructors.</span></span>
   <a class="build" href="/build-info.json" data-env="{{BUILD_ENV}}" data-built-at="{{BUILD_TIME}}"
      title="branch {{BUILD_BRANCH}} · commit {{BUILD_COMMIT_FULL}} · built {{BUILD_TIME}}">
     <span class="dot"></span><span>build {{BUILD_STAMP}}</span> <span class="rel" data-build-rel></span>
@@ -53,10 +53,10 @@
 </footer>
 
 <nav class="tabbar" aria-label="Mobile">
-  <a href="/"><span class="ico">⌂</span>Головна</a>
-  <a href="/glossary"><span class="ico">≡</span>Словник</a>
-  <a href="/scenario"><span class="ico">▷</span>Сценарії</a>
-  <a href="/course" aria-current="page"><span class="ico">✓</span>Прогрес</a>
+  <a href="/"><span class="ico">⌂</span><span data-i18n="tab.home">Home</span></a>
+  <a href="/glossary"><span class="ico">≡</span><span data-i18n="tab.glossary">Glossary</span></a>
+  <a href="/scenario"><span class="ico">▷</span><span data-i18n="tab.scenarios">Scenarios</span></a>
+  <a href="/course" aria-current="page"><span class="ico">✓</span><span data-i18n="tab.progress">Progress</span></a>
 </nav>
 
 </body>

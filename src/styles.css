@@ -71,6 +71,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .topbar nav a { color: var(--grey); text-decoration: none; }
 .topbar nav a:hover { color: var(--cream); }
 .topbar nav a[aria-current='page'] { color: var(--yellow); }
+/* Reader-language gloss next to the Ukrainian nav labels (filled by app.js). */
+.topbar nav .g { color: var(--grey-3); }
+.topbar nav .g::before { content: ' · '; }
+.topbar nav a[aria-current='page'] .g { color: inherit; opacity: .75; }
 .lang {
   font: 600 12px var(--mono); background: var(--cream); color: var(--ink);
   padding: 7px 14px; border: 0;

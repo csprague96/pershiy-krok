@@ -21,9 +21,9 @@
   <a class="mark" href="/" aria-label="Перший Крок — home"><span>ПК</span></a>
   <a class="wordmark" href="/">Перший Крок</a>
   <nav aria-label="Primary">
-    <a href="/glossary">Словник</a>
-    <a href="/course">Курс</a>
-    <a href="/scenario" aria-current="page">Сценарії</a>
+    <a href="/glossary">Словник<span class="g" data-i18n="nav.glossary"></span></a>
+    <a href="/course">Курс<span class="g" data-i18n="nav.course"></span></a>
+    <a href="/scenario" aria-current="page">Сценарії<span class="g" data-i18n="nav.scenarios"></span></a>
   </nav>
   <button class="lang" type="button">EN ▾</button>
 </header>
@@ -45,11 +45,11 @@
 
     <aside class="aside">
       <div class="keyterms">
-        <span class="kicker" style="color:var(--blue-pale)">Ключові слова · Key terms</span>
+        <span class="kicker" style="color:var(--blue-pale)">Ключові слова · <span data-i18n="scen.keyterms">Key terms</span></span>
         <ul id="keyterms"></ul>
       </div>
       <div class="drill">
-        <span class="kicker" style="color:var(--grey-3)">Швидкий дрил · Quick drill</span>
+        <span class="kicker" style="color:var(--grey-3)">Швидкий дрил · <span data-i18n="scen.drill">Quick drill</span></span>
         <span class="q" id="drill-q"></span>
         <div id="drill-options" style="display:flex;flex-direction:column;gap:6px"></div>
         <span class="verdict" id="drill-verdict"></span>
@@ -60,7 +60,7 @@
 </main>
 
 <footer class="site-foot">
-  <span>Перший Крок · {{YEAR}} — free for volunteers and instructors.</span>
+  <span>Перший Крок · {{YEAR}} — <span data-i18n="footer.free">free for volunteers and instructors.</span></span>
   <a class="build" href="/build-info.json" data-env="{{BUILD_ENV}}" data-built-at="{{BUILD_TIME}}"
      title="branch {{BUILD_BRANCH}} · commit {{BUILD_COMMIT_FULL}} · built {{BUILD_TIME}}">
     <span class="dot"></span><span>build {{BUILD_STAMP}}</span> <span class="rel" data-build-rel></span>
@@ -68,10 +68,10 @@
 </footer>
 
 <nav class="tabbar" aria-label="Mobile">
-  <a href="/"><span class="ico">⌂</span>Головна</a>
-  <a href="/glossary"><span class="ico">≡</span>Словник</a>
-  <a href="/scenario" aria-current="page"><span class="ico">▷</span>Сценарії</a>
-  <a href="/course"><span class="ico">✓</span>Прогрес</a>
+  <a href="/"><span class="ico">⌂</span><span data-i18n="tab.home">Home</span></a>
+  <a href="/glossary"><span class="ico">≡</span><span data-i18n="tab.glossary">Glossary</span></a>
+  <a href="/scenario" aria-current="page"><span class="ico">▷</span><span data-i18n="tab.scenarios">Scenarios</span></a>
+  <a href="/course"><span class="ico">✓</span><span data-i18n="tab.progress">Progress</span></a>
 </nav>
 
 </body>
