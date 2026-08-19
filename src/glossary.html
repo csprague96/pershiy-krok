@@ -21,9 +21,9 @@
   <a class="mark" href="/" aria-label="Перший Крок — home"><span>ПК</span></a>
   <a class="wordmark" href="/">Перший Крок</a>
   <nav aria-label="Primary">
-    <a href="/glossary" aria-current="page">Словник</a>
-    <a href="/course">Курс</a>
-    <a href="/scenario">Сценарії</a>
+    <a href="/glossary" aria-current="page">Словник<span class="g" data-i18n="nav.glossary"></span></a>
+    <a href="/course">Курс<span class="g" data-i18n="nav.course"></span></a>
+    <a href="/scenario">Сценарії<span class="g" data-i18n="nav.scenarios"></span></a>
   </nav>
   <button class="lang" type="button">EN ▾</button>
 </header>
@@ -32,11 +32,11 @@
   <div class="pagehead">
     <h1>СЛОВНИК</h1>
     <span class="pair"><span class="uk">UK</span><span style="color:var(--yellow)">⇄</span><span class="rest">EN · ES · PT</span></span>
-    <span class="note">click a row to open translations and an example</span>
+    <span class="note" data-i18n="glossary.note">click a row to open translations and an example</span>
   </div>
 
   <form class="search" id="search-form" role="search" style="margin-bottom:8px">
-    <input id="q" name="q" type="search" placeholder="Search in any language… “джгут”, “tourniquet”, “torniquete”" aria-label="Search terms">
+    <input id="q" name="q" type="search" data-i18n-ph="glossary.search_ph" placeholder="Search in any language… “джгут”, “tourniquet”, “torniquete”" aria-label="Search terms">
     <button type="submit">Шукати</button>
   </form>
 
@@ -52,7 +52,7 @@
 </main>
 
 <footer class="site-foot">
-  <span>Перший Крок · {{YEAR}} — free for volunteers and instructors.</span>
+  <span>Перший Крок · {{YEAR}} — <span data-i18n="footer.free">free for volunteers and instructors.</span></span>
   <a class="build" href="/build-info.json" data-env="{{BUILD_ENV}}" data-built-at="{{BUILD_TIME}}"
      title="branch {{BUILD_BRANCH}} · commit {{BUILD_COMMIT_FULL}} · built {{BUILD_TIME}}">
     <span class="dot"></span><span>build {{BUILD_STAMP}}</span> <span class="rel" data-build-rel></span>
@@ -60,10 +60,10 @@
 </footer>
 
 <nav class="tabbar" aria-label="Mobile">
-  <a href="/"><span class="ico">⌂</span>Головна</a>
-  <a href="/glossary" aria-current="page"><span class="ico">≡</span>Словник</a>
-  <a href="/scenario"><span class="ico">▷</span>Сценарії</a>
-  <a href="/course"><span class="ico">✓</span>Прогрес</a>
+  <a href="/"><span class="ico">⌂</span><span data-i18n="tab.home">Home</span></a>
+  <a href="/glossary" aria-current="page"><span class="ico">≡</span><span data-i18n="tab.glossary">Glossary</span></a>
+  <a href="/scenario"><span class="ico">▷</span><span data-i18n="tab.scenarios">Scenarios</span></a>
+  <a href="/course"><span class="ico">✓</span><span data-i18n="tab.progress">Progress</span></a>
 </nav>
 
 </body>

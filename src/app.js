@@ -5,15 +5,140 @@
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-  /* ── Translation language (EN / ES / PT) ───────────────────
-     One target language at a time; the other two show in expanded rows.
-     Persisted; every page section that renders translations re-renders on
-     change via the `rerenders` list. */
+  /* ── Site language (EN / ES / PT) ──────────────────────────
+     One language at a time: it is both the translation target for terms and
+     the language of the UI chrome. First visit defaults from the browser's
+     language list; the choice persists. Every section that renders language-
+     dependent content re-renders on change via the `rerenders` list. */
   const LANGS = { en: 'EN', es: 'ES', pt: 'PT' };
   let lang = localStorage.getItem('pk-lang');
-  if (!LANGS[lang]) lang = 'en';
-  const otherLangs = () => Object.keys(LANGS).filter((k) => k !== lang);
+  if (!LANGS[lang]) {
+    const preferred = (navigator.languages || [navigator.language || ''])
+      .map((l) => String(l).slice(0, 2).toLowerCase());
+    lang = preferred.find((l) => LANGS[l]) || 'en';
+  }
   const rerenders = [];
+
+  /* UI strings. Ukrainian halves of «uk · translation» pairs live in the HTML;
+     these are the reader-language halves and standalone UI text. */
+  const I18N = {
+    en: {
+      'nav.glossary': 'Glossary', 'nav.course': 'Course', 'nav.scenarios': 'Scenarios',
+      'tab.home': 'Home', 'tab.glossary': 'Glossary', 'tab.scenarios': 'Scenarios', 'tab.progress': 'Progress',
+      'hero.tagline': '— MILITARY LANGUAGE, FIRST STEP',
+      'hero.p': 'Ranks, commands, gear, medical. Cyrillic + transliteration + audio, so you can understand your unit from day one — even before you can read a word.',
+      'hero.search_ph': 'Search any language… “стій”, “halt”, “alto”',
+      'home.kick_command': 'Command · 04', 'home.kick_medical': 'Medical · 11',
+      'home.wotd': 'Word of the day',
+      'home.open_glossary': 'Open the glossary →',
+      'stats.terms': 'terms', 'stats.scenarios': 'scenarios',
+      'footer.free': 'free for volunteers and instructors.',
+      'glossary.note': 'click a row to open translations and an example',
+      'glossary.search_ph': 'Search in any language… “джгут”, “tourniquet”, “torniquete”',
+      'glossary.search': 'Search', 'glossary.matches': 'matches across all sections',
+      'glossary.empty': 'nothing matched — try the Cyrillic, the transliteration, or your own language.',
+      'glossary.whole': 'the whole glossary', 'glossary.alpha_meta': 'alphabetical',
+      'glossary.terms': 'terms', 'glossary.term': 'term',
+      'course.note': 'pick a track — each one is scenario-based, with audio',
+      'course.start': 'Start', 'course.continue': 'Continue', 'course.again': 'Again',
+      'course.tag_done': 'DONE ✓', 'course.tag_continue': 'CONTINUE', 'course.lines': 'lines',
+      'course.soon': 'SOON', 'course.radio': 'Radio comms', 'course.paper': 'Paperwork & HQ',
+      'course.request': 'request a track →',
+      'scen.pos': 'Scenario', 'scen.next': 'Next scenario:',
+      'scen.lines_repeated': 'lines repeated',
+      'scen.locked': 'next line unlocks after you repeat the phrase…',
+      'scen.done_body': 'All {n} lines repeated. Well done.',
+      'scen.listen': 'Listen', 'scen.repeat': 'Repeat', 'scen.restart': 'Restart',
+      'scen.keyterms': 'Key terms', 'scen.drill': 'Quick drill',
+      'scen.correct': 'correct', 'scen.tryagain': 'try again',
+    },
+    es: {
+      'nav.glossary': 'Glosario', 'nav.course': 'Curso', 'nav.scenarios': 'Escenarios',
+      'tab.home': 'Inicio', 'tab.glossary': 'Glosario', 'tab.scenarios': 'Escenarios', 'tab.progress': 'Progreso',
+      'hero.tagline': '— LENGUA MILITAR, PRIMER PASO',
+      'hero.p': 'Rangos, órdenes, equipo, medicina. Cirílico + transliteración + audio, para entender a tu unidad desde el primer día — incluso antes de poder leer una palabra.',
+      'hero.search_ph': 'Busca en cualquier idioma… «стій», «alto»',
+      'home.kick_command': 'Orden · 04', 'home.kick_medical': 'Médico · 11',
+      'home.wotd': 'Palabra del día',
+      'home.open_glossary': 'Abrir el glosario →',
+      'stats.terms': 'términos', 'stats.scenarios': 'escenarios',
+      'footer.free': 'gratis para voluntarios e instructores.',
+      'glossary.note': 'toca una fila para ver traducciones y un ejemplo',
+      'glossary.search_ph': 'Busca en cualquier idioma… «джгут», «torniquete»',
+      'glossary.search': 'Búsqueda', 'glossary.matches': 'coincidencias en todas las secciones',
+      'glossary.empty': 'sin resultados — prueba el cirílico, la transliteración o tu idioma.',
+      'glossary.whole': 'todo el glosario', 'glossary.alpha_meta': 'alfabético',
+      'glossary.terms': 'términos', 'glossary.term': 'término',
+      'course.note': 'elige una pista — cada una se basa en escenarios, con audio',
+      'course.start': 'Empezar', 'course.continue': 'Continuar', 'course.again': 'Otra vez',
+      'course.tag_done': 'HECHO ✓', 'course.tag_continue': 'CONTINUAR', 'course.lines': 'líneas',
+      'course.soon': 'PRONTO', 'course.radio': 'Radiocomunicaciones', 'course.paper': 'Documentación y cuartel',
+      'course.request': 'pide una pista →',
+      'scen.pos': 'Escenario', 'scen.next': 'Siguiente escenario:',
+      'scen.lines_repeated': 'líneas repetidas',
+      'scen.locked': 'la siguiente línea se desbloquea cuando repites la frase…',
+      'scen.done_body': 'Las {n} líneas repetidas. ¡Bien hecho!',
+      'scen.listen': 'Escuchar', 'scen.repeat': 'Repetir', 'scen.restart': 'Desde el principio',
+      'scen.keyterms': 'Palabras clave', 'scen.drill': 'Ejercicio rápido',
+      'scen.correct': 'correcto', 'scen.tryagain': 'inténtalo otra vez',
+    },
+    pt: {
+      'nav.glossary': 'Glossário', 'nav.course': 'Curso', 'nav.scenarios': 'Cenários',
+      'tab.home': 'Início', 'tab.glossary': 'Glossário', 'tab.scenarios': 'Cenários', 'tab.progress': 'Progresso',
+      'hero.tagline': '— LÍNGUA MILITAR, PRIMEIRO PASSO',
+      'hero.p': 'Patentes, comandos, equipamento, medicina. Cirílico + transliteração + áudio, para entender sua unidade desde o primeiro dia — mesmo antes de conseguir ler uma palavra.',
+      'hero.search_ph': 'Busque em qualquer idioma… «стій», «alto»',
+      'home.kick_command': 'Comando · 04', 'home.kick_medical': 'Médico · 11',
+      'home.wotd': 'Palavra do dia',
+      'home.open_glossary': 'Abrir o glossário →',
+      'stats.terms': 'termos', 'stats.scenarios': 'cenários',
+      'footer.free': 'gratuito para voluntários e instrutores.',
+      'glossary.note': 'clique numa linha para ver traduções e um exemplo',
+      'glossary.search_ph': 'Busque em qualquer idioma… «джгут», «torniquete»',
+      'glossary.search': 'Busca', 'glossary.matches': 'resultados em todas as seções',
+      'glossary.empty': 'nada encontrado — tente o cirílico, a transliteração ou o seu idioma.',
+      'glossary.whole': 'o glossário completo', 'glossary.alpha_meta': 'alfabético',
+      'glossary.terms': 'termos', 'glossary.term': 'termo',
+      'course.note': 'escolha uma trilha — cada uma é baseada em cenários, com áudio',
+      'course.start': 'Começar', 'course.continue': 'Continuar', 'course.again': 'De novo',
+      'course.tag_done': 'FEITO ✓', 'course.tag_continue': 'CONTINUAR', 'course.lines': 'linhas',
+      'course.soon': 'EM BREVE', 'course.radio': 'Comunicações de rádio', 'course.paper': 'Documentação e QG',
+      'course.request': 'peça uma trilha →',
+      'scen.pos': 'Cenário', 'scen.next': 'Próximo cenário:',
+      'scen.lines_repeated': 'linhas repetidas',
+      'scen.locked': 'a próxima linha desbloqueia quando você repete a frase…',
+      'scen.done_body': 'Todas as {n} linhas repetidas. Muito bem!',
+      'scen.listen': 'Ouvir', 'scen.repeat': 'Repetir', 'scen.restart': 'Do início',
+      'scen.keyterms': 'Palavras-chave', 'scen.drill': 'Exercício rápido',
+      'scen.correct': 'correto', 'scen.tryagain': 'tente de novo',
+    },
+  };
+  const t = (key) => I18N[lang][key] ?? I18N.en[key] ?? '';
+  const otherLangs = () => Object.keys(LANGS).filter((k) => k !== lang);
+
+  /* Static chrome: any element with data-i18n / data-i18n-ph gets its text /
+     placeholder from the dictionary; data-sec-desc pulls a section blurb. */
+  const applyStatic = () => {
+    document.documentElement.lang = lang;
+    $$('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
+    $$('[data-i18n-ph]').forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
+    if (SECTIONS) {
+      $$('[data-sec-desc]').forEach((el) => {
+        const sec = SECTIONS.find((s) => s.id === el.dataset.secDesc);
+        if (sec) el.textContent = sec[lang];
+      });
+    }
+    // Hero: ГОВОРИ, then SPEAK / HABLA / FALA — the reader's language in yellow.
+    const heroes = $$('[data-hero]');
+    if (heroes.length) {
+      const dims = ['var(--blue-lit)', 'var(--cream-2)'];
+      let d = 0;
+      heroes.forEach((el) => {
+        el.style.color = el.dataset.hero === lang ? 'var(--yellow)' : dims[d++ % dims.length];
+      });
+    }
+  };
+  rerenders.push(applyStatic);
 
   const langBtn = $('.lang');
   if (langBtn) {
@@ -172,40 +297,49 @@
     const state = { q: params.get('q') || '', sec: hashSec || '02', mode: 'sec', letter: null };
     input.value = state.q;
 
-    railEl.innerHTML = SECTIONS.map((s) => {
-      const n = TERMS.filter((t) => t.sec === s.id).length;
-      return `<button type="button" data-sec="${s.id}">
-        <span>§ ${s.id} ${esc(s.uk)}</span><span class="c">${n}</span></button>`;
-    }).join('');
+    // Section rail in the reader's language — they can't read the Cyrillic yet;
+    // the section header still shows the Ukrainian name alongside.
+    const renderRail = () => {
+      railEl.innerHTML = SECTIONS.map((s) => {
+        const n = TERMS.filter((tm) => tm.sec === s.id).length;
+        return `<button type="button" data-sec="${s.id}">
+          <span>§ ${s.id} ${esc(s[lang])}</span><span class="c">${n}</span></button>`;
+      }).join('');
+    };
+    renderRail();
 
-    const letters = [...new Set(TERMS.map((t) => t.letter))].sort((a, b) => a.localeCompare(b, 'uk'));
+    const letters = [...new Set(TERMS.map((tm) => tm.letter))].sort((a, b) => a.localeCompare(b, 'uk'));
     alphaEl.innerHTML = letters
       .map((l) => `<button type="button" data-letter="${esc(l)}">${esc(l)}</button>`)
       .join('');
 
     const byUk = [...TERMS].sort((a, b) => a.uk.localeCompare(b.uk, 'uk'));
 
-    const termHtml = (t) => {
-      const sec = SECTIONS.find((s) => s.id === t.sec);
+    const nTerms = (n) => `${n} ${n === 1 ? t('glossary.term') : t('glossary.terms')}`;
+
+    const termHtml = (tm) => {
+      const sec = SECTIONS.find((s) => s.id === tm.sec);
       const others = otherLangs()
-        .map((k) => `<span><strong>${LANGS[k]}</strong> ${esc(t[k])}</span>`)
+        .map((k) => `<span><strong>${LANGS[k]}</strong> ${esc(tm[k])}</span>`)
         .join('');
+      const ex = tm.example;
       return `<button class="term" type="button" aria-expanded="false">
         <span class="term-row">
-          <span class="term-uk">${esc(t.uk)}</span>
-          <span class="term-tr">[${esc(t.tr)}]</span>
-          <span class="term-en">${esc(t[lang])}</span>
-          <span class="play" data-say="${esc(t.uk)}" role="button" tabindex="0" aria-label="Play ${esc(t.uk)}">▶</span>
+          <span class="term-uk">${esc(tm.uk)}</span>
+          <span class="term-tr">[${esc(tm.tr)}]</span>
+          <span class="term-en">${esc(tm[lang])}</span>
+          <span class="play" data-say="${esc(tm.uk)}" role="button" tabindex="0" aria-label="Play ${esc(tm.uk)}">▶</span>
         </span>
         <span class="term-more" hidden>
           ${others}
-          ${t.example ? `<span>«${esc(t.example.uk)}» — “${esc(t.example.en)}”</span>` : ''}
-          <span class="src">§${t.sec} ${esc(sec ? sec.uk : '')}</span>
+          ${ex ? `<span>«${esc(ex.uk)}» — “${esc(ex[lang] || ex.en)}”</span>` : ''}
+          <span class="src">§${tm.sec} ${esc(sec ? sec[lang] : '')}</span>
         </span>
       </button>`;
     };
 
     const render = () => {
+      renderRail();
       $$('button', railEl).forEach((b) =>
         b.setAttribute('aria-pressed', String(state.mode === 'sec' && !state.q.trim() && b.dataset.sec === state.sec)));
       $$('button', alphaEl).forEach((b) =>
@@ -213,28 +347,28 @@
 
       const q = state.q.trim().toLowerCase();
       if (q) {
-        const rows = TERMS.filter((t) =>
-          [t.uk, t.tr, t.en, t.es, t.pt].some((v) => v.toLowerCase().includes(q)));
-        headEl.innerHTML = `<h2>Пошук · Search “${esc(state.q)}”</h2><span class="meta">${rows.length} match${rows.length === 1 ? '' : 'es'} across all sections</span>`;
+        const rows = TERMS.filter((tm) =>
+          [tm.uk, tm.tr, tm.en, tm.es, tm.pt].some((v) => v.toLowerCase().includes(q)));
+        headEl.innerHTML = `<h2>Пошук · ${esc(t('glossary.search'))} “${esc(state.q)}”</h2><span class="meta">${rows.length} ${esc(t('glossary.matches'))}</span>`;
         list.innerHTML = rows.length
           ? rows.map(termHtml).join('')
-          : '<p class="empty">Нічого не знайдено · nothing matched — try the Cyrillic, the transliteration, or your own language.</p>';
+          : `<p class="empty">Нічого не знайдено · ${esc(t('glossary.empty'))}</p>`;
         return;
       }
 
       if (state.mode === 'alpha') {
-        headEl.innerHTML = `<h2>А–Я — the whole glossary</h2><span class="meta">${TERMS.length} terms · alphabetical</span>`;
+        headEl.innerHTML = `<h2>А–Я — ${esc(t('glossary.whole'))}</h2><span class="meta">${TERMS.length} ${esc(t('glossary.terms'))} · ${esc(t('glossary.alpha_meta'))}</span>`;
         list.innerHTML = letters.map((l) => {
-          const group = byUk.filter((t) => t.letter === l);
-          return `<div class="letter" id="L-${esc(l)}"><span>${esc(l)}</span><span class="bar"></span><span class="n">${group.length} term${group.length === 1 ? '' : 's'}</span></div>`
+          const group = byUk.filter((tm) => tm.letter === l);
+          return `<div class="letter" id="L-${esc(l)}"><span>${esc(l)}</span><span class="bar"></span><span class="n">${nTerms(group.length)}</span></div>`
             + group.map(termHtml).join('');
         }).join('');
         return;
       }
 
       const sec = SECTIONS.find((s) => s.id === state.sec);
-      const rows = TERMS.filter((t) => t.sec === state.sec);
-      headEl.innerHTML = `<h2>§ ${sec.id} — ${esc(sec.uk)} · ${esc(sec.en)}</h2><span class="meta">${rows.length} terms</span>`;
+      const rows = TERMS.filter((tm) => tm.sec === state.sec);
+      headEl.innerHTML = `<h2>§ ${sec.id} — ${esc(sec.uk)} · ${esc(sec[lang])}</h2><span class="meta">${rows.length} ${esc(t('glossary.terms'))}</span>`;
       list.innerHTML = rows.map(termHtml).join('');
     };
     rerenders.push(render);
@@ -275,13 +409,13 @@
   if (wotd && TERMS) {
     const renderHome = () => {
       const day = Math.floor(Date.now() / 86400000);
-      const t = TERMS[day % TERMS.length];
+      const tm = TERMS[day % TERMS.length];
       wotd.innerHTML = `
-        <span class="kicker" style="color:var(--grey-3)">Слово дня · Word of the day</span>
-        <span style="font:700 30px var(--display)">${esc(t.uk)}</span>
-        <span class="term-tr">[${esc(t.tr)}]</span>
-        <span style="font:600 16px var(--sans)">${esc(t[lang])}</span>
-        <button class="play" type="button" data-say="${esc(t.uk)}" aria-label="Play ${esc(t.uk)}">▶</button>`;
+        <span class="kicker" style="color:var(--grey-3)">Слово дня · ${esc(t('home.wotd'))}</span>
+        <span style="font:700 30px var(--display)">${esc(tm.uk)}</span>
+        <span class="term-tr">[${esc(tm.tr)}]</span>
+        <span style="font:600 16px var(--sans)">${esc(tm[lang])}</span>
+        <button class="play" type="button" data-say="${esc(tm.uk)}" aria-label="Play ${esc(tm.uk)}">▶</button>`;
       $$('[data-term]').forEach((el) => {
         const term = TERMS.find((x) => x.uk === el.dataset.term);
         if (term) el.textContent = term[lang];
@@ -289,13 +423,10 @@
       // Real counts, straight from the data — they grow as data.js does.
       const stats = $('#stats');
       if (stats) {
-        const n = SCENARIOS.length;
-        const scenWord = n === 1 ? 'сценарій' : n < 5 ? 'сценарії' : 'сценаріїв';
-        stats.innerHTML = `${TERMS.length} термінів<br>${n} ${scenWord}`;
+        stats.innerHTML = `${TERMS.length} ${esc(t('stats.terms'))}<br>${SCENARIOS.length} ${esc(t('stats.scenarios'))}`;
       }
     };
     rerenders.push(renderHome);
-    renderHome();
   }
 
   /* ── Courses ───────────────────────────────────────────── */
@@ -306,27 +437,32 @@
       cream: { cls: '', no: 'var(--grey-3)', lvl: 'var(--grey-3)', bar: 'var(--cream-2)', fill: 'var(--blue)', cta: 'border:1.5px solid #141517;color:#141517' },
       blue: { cls: 'ticket--blue', no: 'var(--blue-pale)', lvl: 'var(--blue-pale)', bar: 'var(--blue-deep)', fill: 'var(--yellow)', cta: 'background:#ffd500;color:#141517' },
     };
-    tracksEl.innerHTML = TRACKS.map((t, i) => {
-      const s = tone[t.tone];
-      // Real progress: lines repeated in this track's scenario (same
-      // localStorage the scenario page writes).
-      const scen = SCENARIOS.find((x) => x.track === t.no);
-      const total = scen.lines.length;
-      const done = Math.min(parseInt(localStorage.getItem(`pk-scen-${t.no}`) || '0', 10) || 0, total);
-      const pct = Math.round((done / total) * 100);
-      const tag = t.tag + (done >= total ? ' · DONE ✓' : done ? ' · CONTINUE' : '');
-      const cta = done >= total ? 'Ще раз · Again' : done ? 'Продовжити · Continue' : 'Почати · Start';
-      return `<a class="ticket track ${s.cls} tilt-${(i % 4) + 1}" href="/scenario?track=${t.no}">
-        <span class="top"><span class="no" style="color:${s.no}">${esc(tag)}</span><span class="lvl" style="color:${s.lvl}">${esc(t.level)}</span></span>
-        <h2>${esc(t.uk)}<br>${esc(t.en)}</h2>
-        <p>${esc(t.desc)}</p>
-        <span class="progress">
-          <span class="bar" style="background:${s.bar}"><i style="width:${pct}%;background:${s.fill}"></i></span>
-          <span class="n">${done}/${total} lines</span>
-        </span>
-        <span class="cta" style="${s.cta}">${cta} →</span>
-      </a>`;
-    }).join('');
+    const renderTracks = () => {
+      tracksEl.innerHTML = TRACKS.map((tk, i) => {
+        const s = tone[tk.tone];
+        // Real progress: lines repeated in this track's scenario (same
+        // localStorage the scenario page writes).
+        const scen = SCENARIOS.find((x) => x.track === tk.no);
+        const total = scen.lines.length;
+        const done = Math.min(parseInt(localStorage.getItem(`pk-scen-${tk.no}`) || '0', 10) || 0, total);
+        const pct = Math.round((done / total) * 100);
+        const tag = tk.tag
+          + (tk.tagNote ? ` · ${tk.tagNote[lang]}` : '')
+          + (done >= total ? ` · ${t('course.tag_done')}` : done ? ` · ${t('course.tag_continue')}` : '');
+        const cta = done >= total ? `Ще раз · ${t('course.again')}` : done ? `Продовжити · ${t('course.continue')}` : `Почати · ${t('course.start')}`;
+        return `<a class="ticket track ${s.cls} tilt-${(i % 4) + 1}" href="/scenario?track=${tk.no}">
+          <span class="top"><span class="no" style="color:${s.no}">${esc(tag)}</span><span class="lvl" style="color:${s.lvl}">${esc(tk.level)}</span></span>
+          <h2>${esc(tk.uk)}<br>${esc(tk[lang])}</h2>
+          <p>${esc(tk.desc[lang])}</p>
+          <span class="progress">
+            <span class="bar" style="background:${s.bar}"><i style="width:${pct}%;background:${s.fill}"></i></span>
+            <span class="n">${done}/${total} ${esc(t('course.lines'))}</span>
+          </span>
+          <span class="cta" style="${s.cta}">${cta} →</span>
+        </a>`;
+      }).join('');
+    };
+    rerenders.push(renderTracks);
   }
 
   /* ── Scenario lesson ───────────────────────────────────── */
@@ -344,37 +480,45 @@
 
     // Head — position is the scenario's real index, not a mocked "07 / 38".
     const pos = String(SCENARIOS.indexOf(scen) + 1).padStart(2, '0');
-    document.title = `${scen.uk} · ${scen.en} — Сценарій ${pos} — Перший Крок`;
-    $('#scen-kicker').textContent = `Сценарій ${pos} / ${String(SCENARIOS.length).padStart(2, '0')} · ${scen.category}`;
-    $('#scen-title').innerHTML = `${esc(scen.uk)}<br><span class="hl">${esc(scen.en)}</span>`;
-    const nextLink = $('#next-scen');
-    nextLink.href = nextHref;
-    nextLink.textContent = `Наступний сценарій: ${next.uk} →`;
+    const renderHead = () => {
+      document.title = `${scen.uk} · ${scen[lang]} — Сценарій ${pos} — Перший Крок`;
+      $('#scen-kicker').textContent = `${t('scen.pos')} ${pos} / ${String(SCENARIOS.length).padStart(2, '0')} · ${scen.category[lang]}`;
+      $('#scen-title').innerHTML = `${esc(scen.uk)}<br><span class="hl">${esc(scen[lang])}</span>`;
+      const nextLink = $('#next-scen');
+      nextLink.href = nextHref;
+      nextLink.textContent = `${t('scen.next')} ${next.uk} →`;
+    };
+    rerenders.push(renderHead);
 
     const meterEl = $('#meter');
     const countEl = $('#phrase-count');
 
     const lineHtml = (l, i) => {
       const state = i < at ? 'done' : i === at ? 'current' : 'locked';
+      const isUk = l.lang === 'УК';
+      // Foreign lines carry the volunteer's language: label and text follow the picker.
+      const who = isUk ? 'УК' : LANGS[lang];
+      const main = isUk ? l.uk : (l[lang] || l.en);
       if (state === 'locked') {
         return `<div class="line" data-state="locked">
-          <span class="who" data-lang="${esc(l.lang)}" style="background:var(--line);color:var(--grey-3)">${esc(l.lang)}</span>
-          <span>next line unlocks after you repeat the phrase…</span>
+          <span class="who" data-lang="${esc(l.lang)}" style="background:var(--line);color:var(--grey-3)">${esc(who)}</span>
+          <span>${esc(t('scen.locked'))}</span>
         </div>`;
       }
-      const sayText = l.lang === 'УК' ? l.uk : l.tr.replace(/\s*\[.*\]$/, '');
+      const sayText = isUk ? l.uk : l.tr.replace(/\s*\[.*\]$/, '');
+      const gloss = isUk ? (l[lang] || l.en) : '';
       return `<div class="line" data-state="${state}">
-        <span class="who" data-lang="${esc(l.lang)}">${esc(l.lang)}</span>
+        <span class="who" data-lang="${esc(l.lang)}">${esc(who)}</span>
         <span class="body">
-          <span class="uk">${esc(l.uk)}</span>
-          <span class="tr">${l.lang === 'УК' ? `[${esc(l.tr)}]` : esc(l.tr)}</span>
-          ${l.en ? `<span class="en">${esc(l.en)}</span>` : ''}
+          <span class="uk">${esc(main)}</span>
+          <span class="tr">${isUk ? `[${esc(l.tr)}]` : esc(l.tr)}</span>
+          ${gloss ? `<span class="en">${esc(gloss)}</span>` : ''}
           ${state === 'current' ? `<span class="acts">
-            <button class="btn--ink" type="button" data-say="${esc(sayText)}">▶ Слухати</button>
-            <button class="btn--ghost-ink" type="button" data-repeat>🎙 Повторити</button>
+            <button class="btn--ink" type="button" data-say="${esc(sayText)}">▶ Слухати · ${esc(t('scen.listen'))}</button>
+            <button class="btn--ghost-ink" type="button" data-repeat>🎙 Повторити · ${esc(t('scen.repeat'))}</button>
           </span>` : ''}
         </span>
-        ${state === 'done' ? `<button class="play" type="button" data-say="${esc(l.uk)}" aria-label="Replay" style="margin-left:auto">▶</button>` : ''}
+        ${state === 'done' ? `<button class="play" type="button" data-say="${esc(sayText)}" aria-label="Replay" style="margin-left:auto">▶</button>` : ''}
       </div>`;
     };
 
@@ -385,18 +529,19 @@
       if (doneAll) {
         html += `<div class="line" data-state="current" style="flex-direction:column;align-items:stretch;gap:10px">
           <span style="font:700 19px var(--display)">Сценарій завершено ✓</span>
-          <span style="font:600 14px var(--sans)">All ${total} lines repeated. Well done.</span>
+          <span style="font:600 14px var(--sans)">${esc(t('scen.done_body').replace('{n}', total))}</span>
           <span class="acts">
-            <a class="btn--ink" href="${nextHref}" style="text-decoration:none">Наступний сценарій →</a>
-            <button class="btn--ghost-ink" type="button" data-restart>↺ Спочатку</button>
+            <a class="btn--ink" href="${nextHref}" style="text-decoration:none">${esc(t('scen.next'))} ${esc(next.uk)} →</a>
+            <button class="btn--ghost-ink" type="button" data-restart>↺ Спочатку · ${esc(t('scen.restart'))}</button>
           </span>
         </div>`;
       }
       scriptEl.innerHTML = html;
       const pct = Math.round((at / total) * 100);
       if (meterEl) meterEl.style.width = `${pct}%`;
-      if (countEl) countEl.textContent = `lines repeated · ${at} / ${total}`;
+      if (countEl) countEl.textContent = `${t('scen.lines_repeated')} · ${at} / ${total}`;
     };
+    rerenders.push(render);
 
     scriptEl.addEventListener('click', (e) => {
       if (e.target.closest('[data-restart]')) {
@@ -412,25 +557,23 @@
       $('.line[data-state="current"]', scriptEl)?.scrollIntoView({ block: 'nearest' });
     });
 
-    render();
-
     const keyEl = $('#keyterms');
     if (keyEl && TERMS) {
       const renderKeys = () => {
         keyEl.innerHTML = scen.keyTerms
-          .map((uk) => TERMS.find((t) => t.uk === uk))
+          .map((uk) => TERMS.find((tm) => tm.uk === uk))
           .filter(Boolean)
-          .map((t) => `<li><strong>${esc(t.uk)}</strong> <span class="tr">[${esc(t.tr)}]</span> — ${esc(t[lang])}</li>`)
+          .map((tm) => `<li><strong>${esc(tm.uk)}</strong> <span class="tr">[${esc(tm.tr)}]</span> — ${esc(tm[lang])}</li>`)
           .join('');
       };
       rerenders.push(renderKeys);
-      renderKeys();
     }
 
     const drillEl = $('#drill-options');
     if (drillEl) {
       const verdict = $('#drill-verdict');
-      $('#drill-q').textContent = scen.drill.q;
+      const renderDrillQ = () => { $('#drill-q').textContent = scen.drill.q[lang]; };
+      rerenders.push(renderDrillQ);
       drillEl.innerHTML = scen.drill.options
         .map((o) => `<button type="button" data-answer="${o.right ? 'right' : 'wrong'}">${esc(o.label)}</button>`)
         .join('');
@@ -441,9 +584,12 @@
         btn.dataset.picked = 'true';
         const right = btn.dataset.answer === 'right';
         if (right) btn.textContent = `${btn.textContent.replace(' ✓', '')} ✓`;
-        verdict.textContent = right ? 'Правильно · correct' : 'Ще раз · try again';
+        verdict.textContent = right ? `Правильно · ${t('scen.correct')}` : `Ще раз · ${t('scen.tryagain')}`;
         if (right) play(btn.textContent.replace(' ✓', ''), null);
       });
     }
   }
+
+  // First paint of everything language-dependent.
+  rerenders.forEach((fn) => fn());
 })();

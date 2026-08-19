@@ -21,9 +21,9 @@
   <a class="mark" href="/" aria-label="Перший Крок — home"><span>ПК</span></a>
   <a class="wordmark" href="/">Перший Крок</a>
   <nav aria-label="Primary">
-    <a href="/glossary">Словник</a>
-    <a href="/course">Курс</a>
-    <a href="/scenario">Сценарії</a>
+    <a href="/glossary">Словник<span class="g" data-i18n="nav.glossary"></span></a>
+    <a href="/course">Курс<span class="g" data-i18n="nav.course"></span></a>
+    <a href="/scenario">Сценарії<span class="g" data-i18n="nav.scenarios"></span></a>
   </nav>
   <button class="lang" type="button">EN ▾</button>
 </header>
@@ -33,26 +33,26 @@
     <div class="pair">
       <span class="uk">UK</span><span style="color:var(--yellow)">⇄</span>
       <span class="rest">EN · ES · PT</span>
-      <span style="color:var(--grey-2);letter-spacing:.24em">— MILITARY LANGUAGE, FIRST STEP</span>
+      <span style="color:var(--grey-2);letter-spacing:.24em" data-i18n="hero.tagline">— MILITARY LANGUAGE, FIRST STEP</span>
     </div>
-    <h1>ГОВОРИ.<br><span class="hl">SPEAK.</span> <span style="color:var(--blue-lit)">HABLA.</span> FALA.</h1>
-    <p>Ranks, commands, gear, medical. Cyrillic + transliteration + audio, so you can understand your unit from day one — even before you can read a word.</p>
+    <h1>ГОВОРИ.<br><span data-hero="en">SPEAK.</span> <span data-hero="es">HABLA.</span> <span data-hero="pt">FALA.</span></h1>
+    <p data-i18n="hero.p">Ranks, commands, gear, medical. Cyrillic + transliteration + audio, so you can understand your unit from day one — even before you can read a word.</p>
     <form class="search" action="/glossary" method="get" role="search">
-      <input name="q" type="search" placeholder="Search any language… “стій”, “halt”, “alto”" aria-label="Search the glossary">
+      <input name="q" type="search" data-i18n-ph="hero.search_ph" placeholder="Search any language… “стій”, “halt”, “alto”" aria-label="Search the glossary">
       <button type="submit">Шукати</button>
     </form>
   </section>
 
   <section class="deck" aria-label="Sample terms">
     <article class="ticket tilt-1">
-      <span class="kicker" style="color:var(--grey-3)">Command · 04</span>
+      <span class="kicker" style="color:var(--grey-3)" data-i18n="home.kick_command">Command · 04</span>
       <span style="font:700 22px var(--display)">Лягай!</span>
       <span class="term-tr">[liahai]</span>
       <span style="font:600 14px var(--sans)" data-term="Лягай!">Get down!</span>
       <button class="play" type="button" data-say="Лягай!" aria-label="Play Лягай">▶</button>
     </article>
     <article class="ticket tilt-2">
-      <span class="kicker" style="color:var(--grey-3)">Medical · 11</span>
+      <span class="kicker" style="color:var(--grey-3)" data-i18n="home.kick_medical">Medical · 11</span>
       <span style="font:700 22px var(--display)">джгут</span>
       <span class="term-tr">[dzhhut]</span>
       <span style="font:600 14px var(--sans)" data-term="джгут">tourniquet</span>
@@ -61,19 +61,19 @@
     <article class="ticket tilt-3" id="wotd"></article>
     <a class="ticket ticket--blue stat tilt-4" href="/glossary">
       <span style="font:700 16px/1.3 var(--display)" id="stats"></span>
-      <span style="font:600 13px var(--sans);color:var(--yellow)">Відкрити словник →</span>
+      <span style="font:600 13px var(--sans);color:var(--yellow)" data-i18n="home.open_glossary">Open the glossary →</span>
     </a>
   </section>
 
   <nav class="sections" aria-label="Glossary sections">
-    <a href="/glossary#01"><span class="n">§ 01</span><span class="t">Звання</span><span class="d">Ranks &amp; forms of address</span></a>
-    <a href="/glossary#02"><span class="n">§ 02</span><span class="t">Команди</span><span class="d">Commands &amp; drill language</span></a>
-    <a href="/glossary#03"><span class="n">§ 03</span><span class="t">Медицина</span><span class="d">Medical &amp; casualty terms</span></a>
+    <a href="/glossary#01"><span class="n">§ 01</span><span class="t">Звання</span><span class="d" data-sec-desc="01">Ranks &amp; forms of address</span></a>
+    <a href="/glossary#02"><span class="n">§ 02</span><span class="t">Команди</span><span class="d" data-sec-desc="02">Commands &amp; drill language</span></a>
+    <a href="/glossary#03"><span class="n">§ 03</span><span class="t">Медицина</span><span class="d" data-sec-desc="03">Medical &amp; casualty terms</span></a>
   </nav>
 </main>
 
 <footer class="site-foot">
-  <span>Перший Крок · {{YEAR}} — free for volunteers and instructors.</span>
+  <span>Перший Крок · {{YEAR}} — <span data-i18n="footer.free">free for volunteers and instructors.</span></span>
   <a class="build" href="/build-info.json" data-env="{{BUILD_ENV}}" data-built-at="{{BUILD_TIME}}"
      title="branch {{BUILD_BRANCH}} · commit {{BUILD_COMMIT_FULL}} · built {{BUILD_TIME}}">
     <span class="dot"></span><span>build {{BUILD_STAMP}}</span> <span class="rel" data-build-rel></span>
@@ -81,10 +81,10 @@
 </footer>
 
 <nav class="tabbar" aria-label="Mobile">
-  <a href="/" aria-current="page"><span class="ico">⌂</span>Головна</a>
-  <a href="/glossary"><span class="ico">≡</span>Словник</a>
-  <a href="/scenario"><span class="ico">▷</span>Сценарії</a>
-  <a href="/course"><span class="ico">✓</span>Прогрес</a>
+  <a href="/" aria-current="page"><span class="ico">⌂</span><span data-i18n="tab.home">Home</span></a>
+  <a href="/glossary"><span class="ico">≡</span><span data-i18n="tab.glossary">Glossary</span></a>
+  <a href="/scenario"><span class="ico">▷</span><span data-i18n="tab.scenarios">Scenarios</span></a>
+  <a href="/course"><span class="ico">✓</span><span data-i18n="tab.progress">Progress</span></a>
 </nav>
 
 </body>
