@@ -650,6 +650,9 @@
     const PASS = 0.7;
     const MAX_TRIES = 3;
     const REC_MS = 7000;
+    // Steps the learner must say out loud: explicit `speak` steps and their
+    // own turns in the dialogue (`line` with lang EN).
+    const isSpoken = (step) => step.type === 'speak' || (step.type === 'line' && step.lang === 'EN');
 
     const stopMic = () => {
       try { recog?.abort(); } catch { /* already stopped */ }
@@ -824,16 +827,18 @@
 
     const currentHtml = (step) => {
       const gloss = step[lang] || step.en;
-      switch (step.type) {
+      // The learner's own dialogue turns are spoken and graded exactly like
+      // `speak` steps; only the other speaker's lines are listen-and-continue.
+      switch (isSpoken(step) ? 'speak' : step.type) {
         case 'line':
-          return `<span class="who" data-lang="${esc(step.lang)}">${esc(step.lang === 'УК' ? 'УК' : LANGS[lang])}</span>
+          return `<span class="who" data-lang="УК">УК</span>
             <span class="body">
               <span class="uk">${esc(step.uk)}</span>
               <span class="tr">[${esc(step.tr)}]</span>
               ${gloss ? `<span class="en">${esc(gloss)}</span>` : ''}
               <span class="acts">
                 <button class="btn--ink" type="button" data-say="${esc(step.uk)}">▶ Слухати · ${esc(t('scen.listen'))}</button>
-                <button class="btn--ghost-ink" type="button" data-repeat>🎙 Повторити · ${esc(t('scen.repeat'))}</button>
+                <button class="btn--ghost-ink" type="button" data-repeat>Далі · ${esc(t('scen.continue'))}</button>
               </span>
             </span>`;
         case 'speak':
@@ -1094,7 +1099,7 @@
       }
       if (e.target.closest('[data-mic]')) {
         const step = scene.steps[at];
-        if (!step || step.type !== 'speak') return;
+        if (!step || !isSpoken(step)) return;
         if (speak.status === 'recording') { clearTimeout(recTimer); recorder?.stop(); return; }
         if (speak.status === 'listening') { stopMic(); speak.status = 'idle'; render(); return; }
         if (speak.status === 'processing') return;
