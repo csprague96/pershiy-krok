@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Доступ · Access — Перший Крок</title>
+<meta name="description" content="Enter the unit access code to open the course and scenarios.">
+<meta name="robots" content="noindex">
+<meta name="pk-build" content="{{BUILD_COMMIT_FULL}}">
+<meta name="theme-color" content="#141517">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script src="/data.js" defer></script>
+<script src="/app.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="mark" href="/" aria-label="Перший Крок — home"><span>ПК</span></a>
+  <a class="wordmark" href="/">Перший Крок</a>
+  <nav aria-label="Primary">
+    <a href="/glossary">Словник<span class="g" data-i18n="nav.glossary"></span></a>
+    <a href="/course">Курс<span class="g" data-i18n="nav.course"></span></a>
+    <a href="/scenario">Сценарії<span class="g" data-i18n="nav.scenarios"></span></a>
+  </nav>
+  <button class="lang" type="button">EN ▾</button>
+</header>
+
+<main class="wrap">
+  <div class="pagehead">
+    <h1>КОД ДОСТУПУ</h1>
+    <span class="note" data-i18n="login.note">the course and scenarios are for units and volunteers — ask your instructor for the code</span>
+  </div>
+
+  <section class="gate">
+    <form class="ticket tilt-1" id="login-form" autocomplete="off">
+      <span class="kicker" style="color:var(--grey-3)">Доступ · <span data-i18n="login.kicker">Access</span></span>
+      <p data-i18n="login.why">The speaking exercises use paid speech services, so this part of the site is behind a shared code. The glossary stays open to everyone.</p>
+      <label class="sr-only" for="code" data-i18n="login.label">Access code</label>
+      <div class="search" style="max-width:none">
+        <input id="code" name="code" type="password" inputmode="text" autocapitalize="off" spellcheck="false" required
+               data-i18n-ph="login.ph" placeholder="Access code">
+        <button type="submit">Увійти · <span data-i18n="login.enter">Enter</span></button>
+      </div>
+      <span class="step-verdict" id="login-msg" role="status" aria-live="polite"></span>
+    </form>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <span>Перший Крок · {{YEAR}} — <span data-i18n="footer.free">free for volunteers and instructors.</span></span>
+  <a class="build" href="/build-info.json" data-env="{{BUILD_ENV}}" data-built-at="{{BUILD_TIME}}"
+     title="branch {{BUILD_BRANCH}} · commit {{BUILD_COMMIT_FULL}} · built {{BUILD_TIME}}">
+    <span class="dot"></span><span>build {{BUILD_STAMP}}</span> <span class="rel" data-build-rel></span>
+  </a>
+</footer>
+
+<nav class="tabbar" aria-label="Mobile">
+  <a href="/"><span class="ico">⌂</span><span data-i18n="tab.home">Home</span></a>
+  <a href="/glossary"><span class="ico">≡</span><span data-i18n="tab.glossary">Glossary</span></a>
+  <a href="/scenario"><span class="ico">▷</span><span data-i18n="tab.scenarios">Scenarios</span></a>
+  <a href="/course"><span class="ico">✓</span><span data-i18n="tab.progress">Progress</span></a>
+</nav>
+
+</body>
+</html>

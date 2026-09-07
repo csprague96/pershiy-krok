@@ -54,12 +54,22 @@
       'scen.keyterms': 'Key terms',
       'scen.correct': 'correct', 'scen.tryagain': 'try again',
       'scen.speak_prompt': 'Your turn — say it out loud',
-      'scen.mic_listen': 'Speak', 'scen.mic_listening': 'Listening…',
-      'scen.heard': 'We heard:',
-      'scen.match_ok': 'Close enough — well done!',
-      'scen.match_retry': 'Not quite — listen and try again, or continue',
+      'scen.mic_listen': 'Speak', 'scen.mic_again': 'Try again', 'scen.mic_listening': 'Listening…',
+      'scen.processing': 'Checking…',
+      'scen.heard': 'We heard:', 'scen.need': 'need', 'scen.engine_browser': 'browser recognition',
+      'scen.need_pass': 'Press Speak, say the line clearly, press Stop. You need a pass to unlock the next step.',
+      'scen.match_ok': 'Passed — well done!',
+      'scen.match_retry': 'Not quite — listen again, then say the red words more clearly',
+      'scen.match_stuck': 'Still not there — listen once more, or skip it for now and come back',
+      'scen.skip': 'Skip for now →',
       'scen.said_it': 'I said it — continue',
       'scen.mic_denied': 'Microphone unavailable — say it out loud and continue below',
+      'login.note': 'the course and scenarios are for units and volunteers — ask your instructor for the code',
+      'login.kicker': 'Access', 'login.label': 'Access code', 'login.ph': 'Access code', 'login.enter': 'Enter',
+      'login.why': 'The speaking exercises use paid speech services, so this part of the site is behind a shared code. The glossary stays open to everyone.',
+      'login.wrong': 'That code is not right.', 'login.wait': 'Too many tries — wait a few minutes.',
+      'login.open': 'No access code is set on this deployment — everything is open.',
+      'login.in': 'You are in.', 'login.go': 'Continue →', 'login.error': 'Could not sign in — check your connection.',
       'scen.record': 'Record', 'scen.stop': 'Stop', 'scen.play_back': 'Play it back',
       'scen.sounded_right': 'Sounded right — continue',
       'scen.translate_prompt': 'Translate into your language — no copy-paste',
@@ -100,12 +110,22 @@
       'scen.keyterms': 'Palabras clave',
       'scen.correct': 'correcto', 'scen.tryagain': 'inténtalo otra vez',
       'scen.speak_prompt': 'Tu turno — dilo en voz alta',
-      'scen.mic_listen': 'Hablar', 'scen.mic_listening': 'Escuchando…',
-      'scen.heard': 'Hemos oído:',
-      'scen.match_ok': 'Suficientemente cerca — ¡bien hecho!',
-      'scen.match_retry': 'Casi — escucha e inténtalo otra vez, o continúa',
+      'scen.mic_listen': 'Hablar', 'scen.mic_again': 'Otra vez', 'scen.mic_listening': 'Escuchando…',
+      'scen.processing': 'Comprobando…',
+      'scen.heard': 'Hemos oído:', 'scen.need': 'mínimo', 'scen.engine_browser': 'reconocimiento del navegador',
+      'scen.need_pass': 'Pulsa Hablar, di la frase con claridad y pulsa Parar. Necesitas aprobar para desbloquear el siguiente paso.',
+      'scen.match_ok': 'Aprobado — ¡bien hecho!',
+      'scen.match_retry': 'Casi — escucha otra vez y pronuncia con más claridad las palabras en rojo',
+      'scen.match_stuck': 'Todavía no — escucha una vez más, o sáltalo por ahora y vuelve después',
+      'scen.skip': 'Saltar por ahora →',
       'scen.said_it': 'Lo dije — continuar',
       'scen.mic_denied': 'Micrófono no disponible — dilo en voz alta y continúa abajo',
+      'login.note': 'el curso y los escenarios son para unidades y voluntarios — pide el código a tu instructor',
+      'login.kicker': 'Acceso', 'login.label': 'Código de acceso', 'login.ph': 'Código de acceso', 'login.enter': 'Entrar',
+      'login.why': 'Los ejercicios de habla usan servicios de voz de pago, así que esta parte del sitio está tras un código compartido. El glosario sigue abierto para todos.',
+      'login.wrong': 'Ese código no es correcto.', 'login.wait': 'Demasiados intentos — espera unos minutos.',
+      'login.open': 'Este despliegue no tiene código de acceso — todo está abierto.',
+      'login.in': 'Ya estás dentro.', 'login.go': 'Continuar →', 'login.error': 'No se pudo entrar — revisa tu conexión.',
       'scen.record': 'Grabar', 'scen.stop': 'Parar', 'scen.play_back': 'Escúchate',
       'scen.sounded_right': 'Sonó bien — continuar',
       'scen.translate_prompt': 'Traduce a tu idioma — sin copiar y pegar',
@@ -146,12 +166,22 @@
       'scen.keyterms': 'Palavras-chave',
       'scen.correct': 'correto', 'scen.tryagain': 'tente de novo',
       'scen.speak_prompt': 'Sua vez — diga em voz alta',
-      'scen.mic_listen': 'Falar', 'scen.mic_listening': 'Ouvindo…',
-      'scen.heard': 'Ouvimos:',
-      'scen.match_ok': 'Perto o suficiente — muito bem!',
-      'scen.match_retry': 'Quase — ouça e tente de novo, ou continue',
+      'scen.mic_listen': 'Falar', 'scen.mic_again': 'De novo', 'scen.mic_listening': 'Ouvindo…',
+      'scen.processing': 'Verificando…',
+      'scen.heard': 'Ouvimos:', 'scen.need': 'mínimo', 'scen.engine_browser': 'reconhecimento do navegador',
+      'scen.need_pass': 'Aperte Falar, diga a frase com clareza e aperte Parar. Você precisa passar para desbloquear o próximo passo.',
+      'scen.match_ok': 'Passou — muito bem!',
+      'scen.match_retry': 'Quase — ouça de novo e pronuncie com mais clareza as palavras em vermelho',
+      'scen.match_stuck': 'Ainda não — ouça mais uma vez, ou pule por enquanto e volte depois',
+      'scen.skip': 'Pular por enquanto →',
       'scen.said_it': 'Eu disse — continuar',
       'scen.mic_denied': 'Microfone indisponível — diga em voz alta e continue abaixo',
+      'login.note': 'o curso e os cenários são para unidades e voluntários — peça o código ao seu instrutor',
+      'login.kicker': 'Acesso', 'login.label': 'Código de acesso', 'login.ph': 'Código de acesso', 'login.enter': 'Entrar',
+      'login.why': 'Os exercícios de fala usam serviços de voz pagos, então esta parte do site fica atrás de um código compartilhado. O glossário continua aberto para todos.',
+      'login.wrong': 'Esse código não está certo.', 'login.wait': 'Muitas tentativas — espere alguns minutos.',
+      'login.open': 'Esta implantação não tem código de acesso — tudo está aberto.',
+      'login.in': 'Você está dentro.', 'login.go': 'Continuar →', 'login.error': 'Não foi possível entrar — verifique sua conexão.',
       'scen.record': 'Gravar', 'scen.stop': 'Parar', 'scen.play_back': 'Ouça você mesmo',
       'scen.sounded_right': 'Soou bem — continuar',
       'scen.translate_prompt': 'Traduza para o seu idioma — sem copiar e colar',
@@ -271,15 +301,38 @@
   }
 
   /* ── Pronunciation ─────────────────────────────────────────
-     Pre-generated recordings (scripts/tts.mjs → /audio/) are preferred; any
-     phrase without a file falls back to speech synthesis with a Ukrainian
-     voice when one is installed. */
+     Three tiers, best first:
+       1. pre-generated recordings (scripts/tts.mjs → /audio/, via manifest)
+       2. /api/tts — ElevenLabs on demand (Google/Azure fallback server-side),
+          only behind the access gate; a 401/404/503 switches it off for the
+          session so public pages don't keep knocking
+       3. the browser's own speech synthesis, if it has a Ukrainian voice */
   let audioManifest = {};
-  fetch('/audio/manifest.json')
+  const manifestReady = fetch('/audio/manifest.json')
     .then((r) => (r.ok ? r.json() : {}))
     .then((m) => { audioManifest = m; })
     .catch(() => {});
   let currentAudio = null;
+  let apiTts = 'unknown'; // 'ok' | 'off'
+  const apiAudio = new Map(); // text → object URL
+
+  async function fetchApiAudio(text) {
+    if (apiTts === 'off') return null;
+    if (apiAudio.has(text)) return apiAudio.get(text);
+    try {
+      const r = await fetch(`/api/tts?text=${encodeURIComponent(text)}`);
+      if (!r.ok) {
+        if ([401, 403, 404, 503].includes(r.status)) apiTts = 'off';
+        return null;
+      }
+      const url = URL.createObjectURL(await r.blob());
+      apiAudio.set(text, url);
+      apiTts = 'ok';
+      return url;
+    } catch {
+      return null;
+    }
+  }
 
   let ukVoice = null;
   const pickVoice = () => {
@@ -307,23 +360,30 @@
     speechSynthesis.speak(u);
   }
 
-  function play(text, btn) {
+  function playUrl(url, text, btn, onFail) {
+    if (currentAudio) currentAudio.pause();
+    window.speechSynthesis?.cancel();
+    const audio = new Audio(url);
+    currentAudio = audio;
+    const clear = () => { if (btn) btn.dataset.playing = 'false'; };
+    if (btn) btn.dataset.playing = 'true';
+    audio.addEventListener('ended', clear);
+    audio.addEventListener('pause', clear);
+    audio.addEventListener('error', () => { clear(); onFail(); }, { once: true });
+    audio.play().catch(() => { clear(); onFail(); });
+  }
+
+  async function play(text, btn) {
+    await manifestReady;
     // Manifest values are `{ file, provider, at }` (v2) or a bare filename (v1).
     const entry = audioManifest[text];
     const file = entry && (typeof entry === 'string' ? entry : entry.file);
-    if (!file) return say(text, btn);
-    if (currentAudio) currentAudio.pause();
-    window.speechSynthesis?.cancel();
-    const audio = new Audio(`/audio/${file}`);
-    currentAudio = audio;
-    if (btn) {
-      btn.dataset.playing = 'true';
-      const clear = () => { btn.dataset.playing = 'false'; };
-      audio.addEventListener('ended', clear);
-      audio.addEventListener('pause', clear);
-      audio.addEventListener('error', () => { clear(); say(text, btn); }, { once: true });
-    }
-    audio.play().catch(() => say(text, btn));
+    if (file) return playUrl(`/audio/${file}`, text, btn, () => say(text, btn));
+    if (btn) btn.dataset.playing = 'true';
+    const url = await fetchApiAudio(text);
+    if (url) return playUrl(url, text, btn, () => say(text, btn));
+    if (btn) btn.dataset.playing = 'false';
+    say(text, btn);
   }
 
   document.addEventListener('click', (e) => {
@@ -559,36 +619,62 @@
     let scene = scenes[sceneIdx];
     let at = sceneDone(journey, scene);
 
-    /* Transient state of the current step; cleared on every advance. */
-    const speak = { status: 'idle', heard: '', ok: false };
+    /* Transient state of the current step; cleared on every advance.
+       speak.status: idle | recording | processing | listening | heard */
+    const speak = { status: 'idle', heard: '', ok: false, score: 0, words: [], attempts: 0, engine: '' };
     const trans = { value: '', verdict: '', revealed: false, graded: false };
-    let recog = null, recorder = null, recUrl = null;
+    let recog = null, recorder = null, recUrl = null, recTimer = null;
     let micDenied = false;
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    // sr → recognition + fuzzy match; rec → record-and-listen self-check;
-    // honor → prompt only. Downgrades on missing APIs or denied permission.
-    let micMode = SR ? 'sr'
-      : navigator.mediaDevices?.getUserMedia && window.MediaRecorder ? 'rec' : 'honor';
+    const canRecord = Boolean(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
+
+    /* Speaking steps are graded — the learner must reach PASS to move on.
+       Engines, best first:
+         api   → record, send to /api/stt (ElevenLabs Scribe), grade here
+         sr    → the browser's own speech recognition (Chrome/Edge/Safari)
+         rec   → record-and-listen self-check (Firefox: no SR, no API)
+         honor → prompt only (no microphone at all)
+       Only api/sr can grade. rec/honor can't hard-block, and after MAX_TRIES
+       failed graded attempts a skip appears so a bad mic never traps anyone. */
+    let sttApi = 'unknown'; // 'ok' | 'off' — probed below
+    const engineFor = () => {
+      if (micDenied || !canRecord && !SR) return 'honor';
+      if (sttApi !== 'off' && canRecord) return 'api';
+      if (SR) return 'sr';
+      return canRecord ? 'rec' : 'honor';
+    };
+    fetch('/api/stt', { method: 'GET' })
+      .then((r) => r.ok ? r.json() : { ok: false })
+      .then((j) => { sttApi = j.ok ? 'ok' : 'off'; })
+      .catch(() => { sttApi = 'off'; });
+    const PASS = 0.7;
+    const MAX_TRIES = 3;
+    const REC_MS = 7000;
 
     const stopMic = () => {
       try { recog?.abort(); } catch { /* already stopped */ }
       recog = null;
+      clearTimeout(recTimer);
       if (recorder && recorder.state === 'recording') recorder.stop();
     };
     const resetStep = () => {
       stopMic();
-      Object.assign(speak, { status: 'idle', heard: '', ok: false });
+      Object.assign(speak, { status: 'idle', heard: '', ok: false, score: 0, words: [], attempts: 0, engine: '' });
       Object.assign(trans, { value: '', verdict: '', revealed: false, graded: false });
       if (recUrl) { URL.revokeObjectURL(recUrl); recUrl = null; }
       recorder = null;
     };
 
-    /* Lenient similarity for speech: character-bigram Dice coefficient over
-       normalized text. Word-order and length tolerant; 0.55 is deliberately
-       forgiving — recognition of accented Ukrainian is noisy and the goal is
-       encouragement, not assessment. `norm` also powers translate grading. */
+    /* Scoring. `norm` also powers translate grading. Two views of the same
+       utterance, and the better one counts:
+         • word level — each target word takes its best Levenshtein similarity
+           among the heard words (order-free, so a dropped or swapped word only
+           costs that word); this also gives the per-word feedback
+         • character bigram Dice over the whole string — rescues cases where
+           the transcriber glued or split words */
     const norm = (s) => String(s).toLowerCase()
-      .replace(/[’'`]/g, '')
+      .replace(/[’'`ʼ]/g, '')
+      .replace(/ґ/g, 'г')
       .replace(/[^\p{L}\p{N}\s]/gu, ' ')
       .replace(/\s+/g, ' ')
       .trim();
@@ -605,7 +691,38 @@
       for (const [k, v] of A) inter += Math.min(v, B.get(k) || 0);
       return nA + nB ? (2 * inter) / (nA + nB) : 0;
     };
-    const MATCH = 0.55;
+    const lev = (a, b) => {
+      const prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+      for (let i = 1; i <= a.length; i++) {
+        let diag = prev[0];
+        prev[0] = i;
+        for (let j = 1; j <= b.length; j++) {
+          const tmp = prev[j];
+          prev[j] = Math.min(prev[j] + 1, prev[j - 1] + 1, diag + (a[i - 1] === b[j - 1] ? 0 : 1));
+          diag = tmp;
+        }
+      }
+      return prev[b.length];
+    };
+    const sim = (a, b) => 1 - lev(a, b) / Math.max(a.length, b.length, 1);
+    const grade = (heard, target) => {
+      const H = norm(heard).split(' ').filter(Boolean);
+      const words = norm(target).split(' ').filter(Boolean).map((w) => {
+        let best = 0;
+        for (const h of H) best = Math.max(best, sim(w, h));
+        return { w, s: best, hit: best >= 0.7 };
+      });
+      const wordScore = words.length ? words.reduce((n, x) => n + x.s, 0) / words.length : 0;
+      return { score: Math.max(wordScore, dice(heard, target)), words };
+    };
+    const applyGrade = (heard) => {
+      const step = scene.steps[at];
+      const { score, words } = grade(heard, step.uk);
+      const ok = score >= PASS;
+      Object.assign(speak, { status: 'heard', heard, ok, score, words, attempts: speak.attempts + 1 });
+      render();
+      if (ok) setTimeout(advance, 900);
+    };
 
     // Head — position is the journey's real index; the kicker adds the scene.
     const pos = String(SCENARIOS.indexOf(journey) + 1).padStart(2, '0');
@@ -655,31 +772,54 @@
     };
 
     const speakActs = (step) => {
+      const engine = speak.status === 'idle' || speak.status === 'heard' ? engineFor() : speak.engine;
       const listen = `<button class="btn--ink" type="button" data-say="${esc(step.uk)}">▶ Слухати · ${esc(t('scen.listen'))}</button>`;
-      const skip = `<button class="btn--ghost-ink" type="button" data-repeat>Готово · ${esc(t('scen.said_it'))}</button>`;
-      let mid = '', extra = '';
-      if (micMode === 'sr') {
-        mid = speak.status === 'listening'
-          ? `<button class="btn--ghost-ink" type="button" data-mic>● ${esc(t('scen.mic_listening'))}</button>`
-          : `<button class="btn--ghost-ink" type="button" data-mic>🎙 Говорити · ${esc(t('scen.mic_listen'))}</button>`;
-        if (speak.status === 'heard') {
-          extra = `<span class="step-heard">${esc(t('scen.heard'))} «${esc(speak.heard)}»</span>
-            <span class="step-verdict">${speak.ok ? `Правильно · ${esc(t('scen.match_ok'))}` : `Ще раз · ${esc(t('scen.match_retry'))}`}</span>`;
-        }
-      } else if (micMode === 'rec') {
+      const honor = `<button class="btn--ghost-ink" type="button" data-repeat>Готово · ${esc(t('scen.said_it'))}</button>`;
+      let mid = '', extra = '', tail = '';
+
+      if (engine === 'api' || engine === 'sr') {
+        const graded = engine === 'api';
         mid = speak.status === 'recording'
-          ? `<button class="btn--ghost-ink" type="button" data-mic>■ Стоп · ${esc(t('scen.stop'))}</button>`
+          ? `<button class="btn--ghost-ink" type="button" data-mic data-live="true">■ Стоп · ${esc(t('scen.stop'))}</button>`
+          : speak.status === 'listening'
+            ? `<button class="btn--ghost-ink" type="button" data-mic data-live="true">● ${esc(t('scen.mic_listening'))}</button>`
+            : speak.status === 'processing'
+              ? `<button class="btn--ghost-ink" type="button" data-mic data-busy="true" disabled>… ${esc(t('scen.processing'))}</button>`
+              : `<button class="btn--ghost-ink" type="button" data-mic>🎙 Говорити · ${esc(t(speak.status === 'heard' && !speak.ok ? 'scen.mic_again' : 'scen.mic_listen'))}</button>`;
+        if (speak.status === 'heard') {
+          const pct = Math.round(speak.score * 100);
+          extra = `<span class="step-heard">${esc(t('scen.heard'))} «${esc(speak.heard || '…')}»</span>
+            <span class="step-words">${speak.words.map((w) => `<span data-hit="${w.hit}">${esc(w.w)}</span>`).join('')}</span>
+            <span class="step-score"><b>${pct}%</b> · ${esc(t('scen.need'))} ${Math.round(PASS * 100)}%${graded ? '' : ` · ${esc(t('scen.engine_browser'))}`}</span>
+            <span class="step-verdict" data-tone="${speak.ok ? 'ok' : 'bad'}">${speak.ok
+              ? `Правильно · ${esc(t('scen.match_ok'))}`
+              : `Ще раз · ${esc(t(speak.attempts >= MAX_TRIES ? 'scen.match_stuck' : 'scen.match_retry'))}`}</span>`;
+          if (!speak.ok && speak.attempts >= MAX_TRIES) {
+            tail = `<button class="btn--ghost-ink" type="button" data-repeat>${esc(t('scen.skip'))}</button>`;
+          }
+        } else if (speak.status === 'idle') {
+          extra = `<span class="step-verdict">${esc(t('scen.need_pass'))}</span>`;
+        }
+        return `${extra}<span class="acts">${listen}${mid}${tail}</span>`;
+      }
+
+      if (engine === 'rec') {
+        mid = speak.status === 'recording'
+          ? `<button class="btn--ghost-ink" type="button" data-mic data-live="true">■ Стоп · ${esc(t('scen.stop'))}</button>`
           : `<button class="btn--ghost-ink" type="button" data-mic>🎙 Запис · ${esc(t('scen.record'))}</button>`;
         if (speak.status === 'recorded' && recUrl) {
           extra = `<span class="acts">
             <button class="btn--ghost-ink" type="button" data-playrec>▶ Прослухати · ${esc(t('scen.play_back'))}</button>
             <button class="btn--ink" type="button" data-repeat>Готово · ${esc(t('scen.sounded_right'))}</button>
           </span>`;
+          return `${extra}<span class="acts">${listen}${mid}</span>`;
         }
-      } else if (micDenied) {
-        extra = `<span class="step-verdict">${esc(t('scen.mic_denied'))}</span>`;
+        return `<span class="acts">${listen}${mid}</span>`;
       }
-      return `${extra}<span class="acts">${listen}${mid}${micMode === 'rec' && speak.status === 'recorded' ? '' : skip}</span>`;
+
+      // honor: no usable microphone — the prompt is all we can do.
+      extra = `<span class="step-verdict">${esc(t('scen.mic_denied'))}</span>`;
+      return `${extra}<span class="acts">${listen}${honor}</span>`;
     };
 
     const currentHtml = (step) => {
@@ -805,67 +945,95 @@
       $('.line[data-state="current"]', scriptEl)?.scrollIntoView({ block: 'nearest' });
     };
 
-    /* Speech recognition (Chrome/Edge/Safari). Firefox has no SR: micMode
-       falls back to record-and-listen, and if even that fails, to the honor
-       button. The skip button stays visible in every mode — recognition can
-       never hard-block progress. */
+    const hush = () => { if (currentAudio) currentAudio.pause(); window.speechSynthesis?.cancel(); };
+
+    /* Browser speech recognition (Chrome/Edge/Safari) — used when the API is
+       off. Picks the alternative that best matches the target, then grades it
+       exactly like an API transcript. */
     const startSR = (step) => {
-      if (currentAudio) currentAudio.pause();
-      window.speechSynthesis?.cancel();
+      hush();
       recog = new SR();
       recog.lang = 'uk-UA';
       recog.interimResults = false;
-      recog.maxAlternatives = 3;
+      recog.maxAlternatives = 5;
       let got = false;
       recog.onresult = (e) => {
         got = true;
-        let best = { text: '', score: 0 };
+        let best = { text: '', score: -1 };
         for (const alt of e.results[0]) {
-          const score = dice(alt.transcript, step.uk);
-          if (score >= best.score) best = { text: alt.transcript, score };
+          const { score } = grade(alt.transcript, step.uk);
+          if (score > best.score) best = { text: alt.transcript, score };
         }
-        Object.assign(speak, { status: 'heard', heard: best.text, ok: best.score >= MATCH });
-        render();
-        if (speak.ok) setTimeout(advance, 600);
+        applyGrade(best.text);
       };
       recog.onerror = (e) => {
-        if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
-          micMode = 'honor';
-          micDenied = true;
-        }
+        if (e.error === 'not-allowed' || e.error === 'service-not-allowed') micDenied = true;
         if (speak.status === 'listening') speak.status = 'idle';
         render();
       };
       recog.onend = () => {
-        if (!got && speak.status === 'listening') { speak.status = 'idle'; render(); }
+        if (!got && speak.status === 'listening') applyGrade('');
       };
-      speak.status = 'listening';
+      Object.assign(speak, { status: 'listening', engine: 'sr' });
       render();
       try { recog.start(); } catch { speak.status = 'idle'; render(); }
     };
 
-    const startRec = async () => {
-      if (currentAudio) currentAudio.pause();
-      window.speechSynthesis?.cancel();
+    /* Record a clip. `engine` decides what happens to it: 'api' sends it to
+       /api/stt and grades the transcript; 'rec' just keeps it for playback. */
+    const pickMime = () => ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg;codecs=opus']
+      .find((m) => window.MediaRecorder?.isTypeSupported?.(m)) || '';
+
+    const transcribe = async (blob) => {
+      const r = await fetch('/api/stt', {
+        method: 'POST',
+        headers: { 'content-type': blob.type.split(';')[0] || 'audio/webm' },
+        body: blob,
+      });
+      if (!r.ok) {
+        const err = new Error(`stt ${r.status}`);
+        err.status = r.status;
+        throw err;
+      }
+      return (await r.json()).text || '';
+    };
+
+    const startRec = async (engine) => {
+      hush();
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         const chunks = [];
-        recorder = new MediaRecorder(stream);
-        recorder.ondataavailable = (e) => chunks.push(e.data);
-        recorder.onstop = () => {
+        const mime = pickMime();
+        recorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+        recorder.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+        recorder.onstop = async () => {
           stream.getTracks().forEach((tk) => tk.stop());
-          if (recUrl) URL.revokeObjectURL(recUrl);
-          recUrl = URL.createObjectURL(new Blob(chunks, { type: recorder?.mimeType || 'audio/webm' }));
+          const blob = new Blob(chunks, { type: recorder?.mimeType || mime || 'audio/webm' });
           recorder = null;
-          speak.status = 'recorded';
+          if (engine !== 'api') {
+            if (recUrl) URL.revokeObjectURL(recUrl);
+            recUrl = URL.createObjectURL(blob);
+            speak.status = 'recorded';
+            render();
+            return;
+          }
+          speak.status = 'processing';
           render();
+          try {
+            applyGrade(await transcribe(blob));
+          } catch (err) {
+            // Service trouble (quota, outage, not configured): fall back to the
+            // browser engine for the rest of the session and ask for a retake.
+            if (err.status !== 400 && err.status !== 413) sttApi = 'off';
+            Object.assign(speak, { status: 'idle', engine: '' });
+            render();
+          }
         };
         recorder.start();
-        speak.status = 'recording';
+        Object.assign(speak, { status: 'recording', engine });
         render();
-        setTimeout(() => { if (recorder && recorder.state === 'recording') recorder.stop(); }, 4000);
+        recTimer = setTimeout(() => { if (recorder && recorder.state === 'recording') recorder.stop(); }, REC_MS);
       } catch {
-        micMode = 'honor';
         micDenied = true;
         speak.status = 'idle';
         render();
@@ -927,13 +1095,12 @@
       if (e.target.closest('[data-mic]')) {
         const step = scene.steps[at];
         if (!step || step.type !== 'speak') return;
-        if (micMode === 'sr') {
-          if (speak.status === 'listening') { stopMic(); speak.status = 'idle'; render(); }
-          else startSR(step);
-        } else if (micMode === 'rec') {
-          if (recorder && recorder.state === 'recording') recorder.stop();
-          else startRec();
-        }
+        if (speak.status === 'recording') { clearTimeout(recTimer); recorder?.stop(); return; }
+        if (speak.status === 'listening') { stopMic(); speak.status = 'idle'; render(); return; }
+        if (speak.status === 'processing') return;
+        const engine = engineFor();
+        if (engine === 'sr') startSR(step);
+        else if (engine === 'api' || engine === 'rec') startRec(engine);
         return;
       }
       if (e.target.closest('[data-playrec]')) {
@@ -964,6 +1131,45 @@
       };
       rerenders.push(renderKeys);
     }
+  }
+
+  /* ── Access gate (login page) ──────────────────────────── */
+  const loginForm = $('#login-form');
+  if (loginForm) {
+    const msg = $('#login-msg');
+    const input = $('#code', loginForm);
+    const params = new URLSearchParams(location.search);
+    // Only ever bounce to a same-origin path.
+    const next = /^\/(?!\/)[^\s]*$/.test(params.get('next') || '') ? params.get('next') : '/course';
+    const show = (key, tone) => { msg.textContent = t(key); msg.dataset.tone = tone || ''; };
+    let state = null; // { gate, authed }
+    const paint = () => {
+      if (!state) return;
+      if (!state.gate) show('login.open', 'ok');
+      else if (state.authed) {
+        msg.dataset.tone = 'ok';
+        msg.innerHTML = `${esc(t('login.in'))} <a href="${esc(next)}" style="font-weight:700">${esc(t('login.go'))}</a>`;
+      }
+    };
+    rerenders.push(paint);
+    fetch('/api/login').then((r) => r.json()).then((j) => { state = j; paint(); }).catch(() => {});
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = '…';
+      try {
+        const r = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ code: input.value }),
+        });
+        if (r.status === 204) { location.href = next; return; }
+        show(r.status === 429 ? 'login.wait' : r.status === 401 ? 'login.wrong' : 'login.error', 'bad');
+        input.select();
+      } catch {
+        show('login.error', 'bad');
+      }
+    });
   }
 
   // First paint of everything language-dependent.
