@@ -267,12 +267,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .keyterms ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font: 400 14px var(--sans); }
 .keyterms strong { font-family: var(--display); }
 .keyterms .tr { color: var(--blue-pale); font-family: var(--mono); font-size: 12px; }
-.drill { background: var(--cream); color: var(--ink); padding: 18px; display: flex; flex-direction: column; gap: 10px; }
-.drill .q { font: 600 15px/1.4 var(--sans); }
-.drill button { border: 1.5px solid var(--ink); padding: 9px 12px; font: 500 14px var(--sans); text-align: left; }
-.drill button[data-answer='right'][data-picked='true'] { background: var(--ink); color: var(--yellow); }
-.drill button[data-answer='wrong'][data-picked='true'] { background: #d92b2b; color: var(--cream); border-color: #d92b2b; }
-.drill .verdict { font: 500 12px var(--mono); color: var(--grey-3); min-height: 18px; }
+/* ── Scenario step internals (choice / speak / translate) ─── */
+.step-choice { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+.step-choice button { border: 1.5px solid var(--ink); background: none; color: var(--ink); padding: 9px 12px; font: 500 14px var(--sans); text-align: left; }
+.step-choice button[data-right='true'][data-picked='true'] { background: var(--ink); color: var(--yellow); }
+.step-choice button[data-right='false'][data-picked='true'] { background: #d92b2b; color: var(--cream); border-color: #d92b2b; }
+.step-verdict { font: 500 12px var(--mono); min-height: 18px; }
+.step-heard { font: 500 13px var(--mono); background: rgba(20, 21, 23, 0.08); padding: 8px 10px; margin-top: 6px; }
+.line textarea[data-translate-input] {
+  width: 100%; min-height: 64px; margin-top: 6px; border: 1.5px solid var(--ink);
+  background: var(--cream); color: var(--ink); padding: 10px 12px;
+  font: 500 14px var(--sans); resize: vertical;
+}
+.step-model { font: 600 14px var(--sans); border-left: 3px solid var(--ink); padding-left: 10px; margin-top: 4px; }
 
 /* ── Footer + build stamp ────────────────────────────────── */
 .site-foot {
