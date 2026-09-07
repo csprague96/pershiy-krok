@@ -267,12 +267,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .keyterms ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font: 400 14px var(--sans); }
 .keyterms strong { font-family: var(--display); }
 .keyterms .tr { color: var(--blue-pale); font-family: var(--mono); font-size: 12px; }
-.drill { background: var(--cream); color: var(--ink); padding: 18px; display: flex; flex-direction: column; gap: 10px; }
-.drill .q { font: 600 15px/1.4 var(--sans); }
-.drill button { border: 1.5px solid var(--ink); padding: 9px 12px; font: 500 14px var(--sans); text-align: left; }
-.drill button[data-answer='right'][data-picked='true'] { background: var(--ink); color: var(--yellow); }
-.drill button[data-answer='wrong'][data-picked='true'] { background: #d92b2b; color: var(--cream); border-color: #d92b2b; }
-.drill .verdict { font: 500 12px var(--mono); color: var(--grey-3); min-height: 18px; }
+/* ── Scenario step internals (choice / speak / translate) ─── */
+.step-choice { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+.step-choice button { border: 1.5px solid var(--ink); background: none; color: var(--ink); padding: 9px 12px; font: 500 14px var(--sans); text-align: left; }
+.step-choice button[data-right='true'][data-picked='true'] { background: var(--ink); color: var(--yellow); }
+.step-choice button[data-right='false'][data-picked='true'] { background: #d92b2b; color: var(--cream); border-color: #d92b2b; }
+.step-verdict { font: 500 12px var(--mono); min-height: 18px; }
+.step-heard { font: 500 13px var(--mono); background: rgba(20, 21, 23, 0.08); padding: 8px 10px; margin-top: 6px; }
+.line textarea[data-translate-input] {
+  width: 100%; min-height: 64px; margin-top: 6px; border: 1.5px solid var(--ink);
+  background: var(--cream); color: var(--ink); padding: 10px 12px;
+  font: 500 14px var(--sans); resize: vertical;
+}
+.step-model { font: 600 14px var(--sans); border-left: 3px solid var(--ink); padding-left: 10px; margin-top: 4px; }
 
 /* ── Footer + build stamp ────────────────────────────────── */
 .site-foot {
@@ -334,3 +341,24 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   html { scroll-behavior: auto; }
   .ticket, .term, .line, [class*='tilt-'] { transform: none !important; }
 }
+
+/* ── Access gate (login) ─────────────────────────────────── */
+.gate { padding: 8px 0 48px; max-width: 560px; }
+.gate .ticket { gap: 14px; }
+.gate p { font: 400 14px/1.55 var(--sans); color: var(--grey-3); }
+.gate .search { border: 1.5px solid var(--ink); }
+.gate .step-verdict[data-tone='bad'] { color: #d92b2b; }
+.gate .step-verdict[data-tone='ok'] { color: var(--blue); }
+
+/* ── Speaking steps: recording state, word-by-word feedback ─ */
+.line .acts [data-mic][data-live='true'] { background: #d92b2b; color: var(--cream); border-color: #d92b2b; animation: pk-pulse 1s ease-in-out infinite; }
+.line .acts [data-mic][data-busy='true'] { opacity: .6; cursor: progress; }
+@keyframes pk-pulse { 50% { filter: brightness(1.25); } }
+.step-words { display: flex; flex-wrap: wrap; gap: 4px 8px; margin-top: 4px; font: 700 17px var(--display); }
+.step-words span[data-hit='false'] { color: #d92b2b; text-decoration: underline wavy #d92b2b; text-underline-offset: 4px; }
+.step-words span[data-hit='true'] { color: #1a7f37; }
+.step-score { font: 600 12px var(--mono); color: var(--line-2); }
+.step-score b { color: var(--ink); }
+.step-verdict[data-tone='ok'] { color: #1a7f37; }
+.step-verdict[data-tone='bad'] { color: #b42318; }
+@media (prefers-reduced-motion: reduce) { .line .acts [data-mic][data-live='true'] { animation: none; } }
