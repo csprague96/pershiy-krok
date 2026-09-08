@@ -541,7 +541,9 @@
   if (wotd && TERMS) {
     const renderHome = () => {
       const day = Math.floor(Date.now() / 86400000);
-      const tm = TERMS[day % TERMS.length];
+      // Deterministic scramble: a prime stride walks the whole list before
+      // repeating, but neighbouring days land in different sections.
+      const tm = TERMS[(day * 7919) % TERMS.length];
       wotd.innerHTML = `
         <span class="kicker" style="color:var(--grey-3)">Слово дня · ${esc(t('home.wotd'))}</span>
         <span style="font:700 30px var(--display)">${esc(tm.uk)}</span>

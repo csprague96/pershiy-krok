@@ -137,9 +137,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero { padding: 64px 0 40px; display: flex; flex-direction: column; gap: 22px; }
 .hero h1 { font: 900 76px/1.02 var(--display); }
 .hero p { font-size: 16px; color: var(--grey); max-width: 620px; }
-.pair { display: flex; align-items: center; gap: 12px; font: 600 12px var(--mono); letter-spacing: 0.22em; }
-.pair .uk { background: var(--blue); color: var(--cream); padding: 4px 10px; }
-.pair .rest { border: 1.5px solid var(--yellow); color: var(--yellow); padding: 3px 10px; }
+/* Chips never break inside; on narrow screens the tagline drops to its own row. */
+.pair { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font: 600 12px var(--mono); letter-spacing: 0.22em; }
+.pair .uk { background: var(--blue); color: var(--cream); padding: 4px 10px; white-space: nowrap; }
+.pair .rest { border: 1.5px solid var(--yellow); color: var(--yellow); padding: 3px 10px; white-space: nowrap; }
 
 .deck { display: flex; gap: 14px; padding-bottom: 56px; align-items: stretch; }
 .deck > * { flex: 1; }
