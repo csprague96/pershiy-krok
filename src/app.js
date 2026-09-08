@@ -724,7 +724,7 @@
       const ok = score >= PASS;
       Object.assign(speak, { status: 'heard', heard, ok, score, words, attempts: speak.attempts + 1 });
       render();
-      if (ok) setTimeout(advance, 900);
+      if (ok) $('[data-repeat]', scriptEl)?.focus();
     };
 
     // Head — position is the journey's real index; the kicker adds the scene.
@@ -797,7 +797,12 @@
             <span class="step-verdict" data-tone="${speak.ok ? 'ok' : 'bad'}">${speak.ok
               ? `Правильно · ${esc(t('scen.match_ok'))}`
               : `Ще раз · ${esc(t(speak.attempts >= MAX_TRIES ? 'scen.match_stuck' : 'scen.match_retry'))}`}</span>`;
-          if (!speak.ok && speak.attempts >= MAX_TRIES) {
+          // A pass stays on screen — with the transcript and word marks — until
+          // the learner chooses to move on; a miss keeps the retry flow.
+          if (speak.ok) {
+            mid = '';
+            tail = `<button class="btn--ink" type="button" data-repeat>Далі · ${esc(t('scen.continue'))} →</button>`;
+          } else if (speak.attempts >= MAX_TRIES) {
             tail = `<button class="btn--ghost-ink" type="button" data-repeat>${esc(t('scen.skip'))}</button>`;
           }
         } else if (speak.status === 'idle') {
