@@ -7,6 +7,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "tts": "node scripts/tts.mjs",
+    "check": "node scripts/check.mjs",
     "dev": "node scripts/build.mjs && node scripts/serve.mjs"
   },
   "engines": {
