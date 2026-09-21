@@ -2153,5 +2153,1230 @@
     "file": "37167cf5a904.mp3",
     "provider": "elevenlabs",
     "at": "2026-09-08"
+  },
+  "Болить голова.": {
+    "file": "c3029031f450.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Болить спина.": {
+    "file": "de7ee00f3f8a.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Вимкни світло!": {
+    "file": "d7c5d16d1ab5.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Вода холодна.": {
+    "file": "561c84cbd65f.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Вокзал далеко. У центрі, біля площі.": {
+    "file": "f54f4774364b.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Відійди від вікна!": {
+    "file": "64b85fb2760d.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Він біжить швидко.": {
+    "file": "c19c92049c64.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Вітаю!": {
+    "file": "a8057f2c4e92.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Де Нова пошта?": {
+    "file": "e962ac6952c2.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Де аптека?": {
+    "file": "714e96819a5d.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Де вокзал?": {
+    "file": "ca91574967f3.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Де ключі?": {
+    "file": "6eaf6f6e18c5.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Де лікарня?": {
+    "file": "72b6daa17dbc.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Добре. У кого є рація?": {
+    "file": "89873ef0ea33.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Добрий день! Що бажаєте?": {
+    "file": "6f2c175b4ad3.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Добрий день. Мені потрібні ліки.": {
+    "file": "63964716d2df.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Добрий день. Що вам потрібно?": {
+    "file": "22e3e6f4af89.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Дрон літає над нами.": {
+    "file": "96919421492a.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Дякую за допомогу.": {
+    "file": "5d536b37b756.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Дякую. А де вокзал?": {
+    "file": "78d7a460da39.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Дякую. До побачення.": {
+    "file": "aaca21c42989.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Дякую. Це дуже смачно.": {
+    "file": "1c916c3fcda8.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Дякую. Це смачно.": {
+    "file": "3d8fa1805f5c.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Закрий очі!": {
+    "file": "ed2210989b52.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Зачини двері!": {
+    "file": "0854e4f93e9b.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Зрозуміло. Дуже дякую.": {
+    "file": "7ca574d5e395.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Каву і суп, будь ласка.": {
+    "file": "acd3c2494e98.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Каву, будь ласка.": {
+    "file": "133aaef4cff0.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Медик рятує життя.": {
+    "file": "a8ae13238099.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Мені потрібні ліки.": {
+    "file": "f1aa742e8370.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Мені треба в лікарню.": {
+    "file": "95c85fbfb881.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Ми будуємо укриття.": {
+    "file": "720213b2ef0d.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Ми плануємо маршрут.": {
+    "file": "a5dc82a1e9e1.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Можеш іти?": {
+    "file": "dc0e503e67a8.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "На базі є медик.": {
+    "file": "94ef608b04cf.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "На вулиці холодно.": {
+    "file": "4522353e866b.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "На даху є дрон.": {
+    "file": "1da7908c3ea3.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "На дорозі є міна.": {
+    "file": "a0c4b3afbf7c.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Ні, дякую. Рахунок, будь ласка.": {
+    "file": "fa9d120f6901.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Ні. Тут небезпечно.": {
+    "file": "e793a6d174d9.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Ні. Я не можу йти.": {
+    "file": "201066f1f7e5.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Ні. Я не розумію.": {
+    "file": "1a57878b236e.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Обережно, суп гарячий.": {
+    "file": "a4acbbc8588b.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Ось таблетки. Двісті гривень.": {
+    "file": "87f8d4379b20.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Ось чай. Обережно, гарячий.": {
+    "file": "0ff62c6f502c.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Перевірка. У тебе є шолом?": {
+    "file": "7d24538d7687.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Перепрошую.": {
+    "file": "b2105e329f5b.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Перепрошую. Де аптека?": {
+    "file": "727107d5f8c2.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Прямо, потім ліворуч. Біля банку.": {
+    "file": "b9545d2dec9f.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Рахунок, будь ласка.": {
+    "file": "2b2c4f3aa1fd.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Слухай. Я пояснюю ще раз.": {
+    "file": "722a46c861e4.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Смачного! Ще щось?": {
+    "file": "2a17b1e7700e.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Стій. Що ще?": {
+    "file": "2639c655fd39.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Суп гарячий.": {
+    "file": "d823a1c80d9e.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Так. Там є діти.": {
+    "file": "d83a638a27bf.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Так. У мене є шолом.": {
+    "file": "3041bd49c0d9.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Тепер я розумію. Дякую.": {
+    "file": "38fb8f104dae.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Техніка ворога!": {
+    "file": "5eb322774f95.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Ти розумієш наказ?": {
+    "file": "9e0587a2a311.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Тут безпечно.": {
+    "file": "0c9693eda8d3.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Тут безпечно?": {
+    "file": "5da2770ece5b.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Тут діти!": {
+    "file": "33525b1a838a.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Тут небезпечно.": {
+    "file": "166d301c4152.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Тут продають воду.": {
+    "file": "7a54fbc5e463.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Тут тихо.": {
+    "file": "e06c4f678078.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Тут холодно і тихо.": {
+    "file": "37e2dcd5fce9.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "У бліндажі безпечно. Іди сюди.": {
+    "file": "5d85a9d66e84.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "У квартирі тепло.": {
+    "file": "dafe123766c0.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "У кого є карта?": {
+    "file": "63d985519416.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "У машині є люди?": {
+    "file": "d8ba6bbba4d9.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "У мене є аптечка.": {
+    "file": "10f718c791a8.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "У нього є рація.": {
+    "file": "50542cceb53a.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "У тебе є аптечка?": {
+    "file": "844431e1c14d.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Це важливо.": {
+    "file": "87c887b065dc.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Це небезпечно.": {
+    "file": "289219c0a823.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Це смачно.": {
+    "file": "61a4e59a4d93.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Це цікава історія.": {
+    "file": "e410df6db528.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Це цікаво.": {
+    "file": "9ca1b78d06fc.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Чую вибух!": {
+    "file": "a124e48310ad.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Чую постріли.": {
+    "file": "2172e415899f.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Що болить?": {
+    "file": "902b553bc0f5.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Що там? Доповідай.": {
+    "file": "3d5159994b10.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Що ти кажеш?": {
+    "file": "c176002d720a.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Що ти робиш?": {
+    "file": "b76395c095a5.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я беру аптечку.": {
+    "file": "bda17387d7b2.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я буду на позиції.": {
+    "file": "5e0c03ed68e5.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я бігаю щоранку.": {
+    "file": "630f9413c67a.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я відповідаю по рації.": {
+    "file": "8693e3c7bac3.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я відпочиваю.": {
+    "file": "7ade7a855120.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я готую вечерю.": {
+    "file": "a53d3e2c5b1a.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я готуюся до виходу.": {
+    "file": "8b28b0bdc8ba.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я даю тобі карту.": {
+    "file": "d201b91c7607.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я допомагаю медику.": {
+    "file": "e3547eea3616.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я думаю, це небезпечно.": {
+    "file": "a345996e7dd2.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я запізнююся.": {
+    "file": "f9aae0bdd020.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я зустрічаю командира.": {
+    "file": "ba307a80d4ce.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я маю питання.": {
+    "file": "5e2a7ff5de26.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я не знаю.": {
+    "file": "6cdaa4373d17.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я не можу йти.": {
+    "file": "91f09d745fca.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я не стріляю.": {
+    "file": "1f8c199601cc.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я обідаю на базі.": {
+    "file": "4b54fa56e759.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я пишу рапорт.": {
+    "file": "10ede675d353.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я пояснюю завдання.": {
+    "file": "bb203e5e3130.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я працюю швидко.": {
+    "file": "526fda607385.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я прибираю кімнату.": {
+    "file": "325be275373c.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я піднімаю рюкзак.": {
+    "file": "f4ec4c64f399.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я слухаю рацію.": {
+    "file": "c68c917e4d88.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я хочу води.": {
+    "file": "39e5a2f29a90.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я чекаю на наказ.": {
+    "file": "03a6bb541c0a.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я читаю карту.": {
+    "file": "462496d33811.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я шукаю командира.": {
+    "file": "bb3bf3e34fce.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я їду в центр.": {
+    "file": "9d8796bb3951.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я їжджу на пікапі.": {
+    "file": "002818d093e9.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Я їм суп.": {
+    "file": "4fad17736215.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "Як там? Тихо?": {
+    "file": "5644507bc78f.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "аптека": {
+    "file": "147e7ba6cf88.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "база": {
+    "file": "80327de6144f.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "банк": {
+    "file": "88bdf28486c7.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "батьки": {
+    "file": "35d059db6ab9.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "батько": {
+    "file": "1617c7b32965.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "безпечний": {
+    "file": "7d0bc73002ba.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "безпечно": {
+    "file": "130eb412e73d.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "брати": {
+    "file": "e277451224f2.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "будувати": {
+    "file": "950fbbe7dd87.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "бути": {
+    "file": "b97c455b2809.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "бібліотека": {
+    "file": "61d8c3e62e6b.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "бігати": {
+    "file": "7822e030a9f8.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "біля": {
+    "file": "e8138deb378a.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "важливий": {
+    "file": "52c19bf24af6.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "вечеря": {
+    "file": "9d0df7860941.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "вибух": {
+    "file": "57f89de97a0e.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "виделка": {
+    "file": "d8b271e95658.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "вокзал": {
+    "file": "a1e007f6a246.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "вулиця": {
+    "file": "5c06d4dcfe83.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "вухо": {
+    "file": "22b0ea402b7d.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "вхід": {
+    "file": "5cca4114677d.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "відповідати": {
+    "file": "ee85d5b36f21.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "відповідь": {
+    "file": "a4a81db074f1.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "відпочивати": {
+    "file": "ec33dd5d2879.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "вікно": {
+    "file": "8aa8bd9fe2a0.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "вітати": {
+    "file": "526c8bb72c2c.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "гарячий": {
+    "file": "df9ee37c698c.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "готель": {
+    "file": "952e4dedaf62.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "готувати": {
+    "file": "e51d18b3d774.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "готуватися": {
+    "file": "32bada9d45c9.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "давати": {
+    "file": "f9ff09678ed5.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "дах": {
+    "file": "3502335c932b.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "двері": {
+    "file": "954e1f712843.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "день": {
+    "file": "e2d65893aab1.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "добрий": {
+    "file": "4a448fcba9ed.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "допомагати": {
+    "file": "de900d9dc271.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "друзі": {
+    "file": "0fc827cb3a01.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "думати": {
+    "file": "09f7f5b7e850.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "дякувати": {
+    "file": "b7774c49902f.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "дім": {
+    "file": "083106a76c4f.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "діти": {
+    "file": "418eef0804f1.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "жилет": {
+    "file": "5a4649c455f1.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "запізнюватися": {
+    "file": "bfc08c46eefe.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "знати": {
+    "file": "74a79eb4a773.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "зустрічати": {
+    "file": "c1aad4851cb5.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "кав’ярня": {
+    "file": "edcc4c34d284.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "казати": {
+    "file": "349f5bcf2e11.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "карта": {
+    "file": "4164bc53b945.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "кафе": {
+    "file": "676ad17cc519.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "квартира": {
+    "file": "19096e6a36dd.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "ключі": {
+    "file": "6060016ca550.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "книжка": {
+    "file": "fcc5f6d8bd49.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "кінотеатр": {
+    "file": "52e1e2da4a86.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "ложка": {
+    "file": "037c14d7e446.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "люди": {
+    "file": "8670f891d3fd.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "ліжко": {
+    "file": "31f1f48db208.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "лікарня": {
+    "file": "54cd09fae3cf.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "ліки": {
+    "file": "b452a1aabfce.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "літати": {
+    "file": "25085c010ed6.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "магазин одягу": {
+    "file": "c22ecc1322f6.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "мати": {
+    "file": "bf6ee333a026.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "машина": {
+    "file": "4c843c3478f2.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "могти": {
+    "file": "9830d65a7f2e.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "місто": {
+    "file": "756cc7166ea4.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "небезпечний": {
+    "file": "5315f78bb002.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "небезпечно": {
+    "file": "725cf6eedee1.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "новий": {
+    "file": "fe347388c57f.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "ноутбук": {
+    "file": "edd0f1b2516f.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "нудний": {
+    "file": "6821b2b77db2.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "ніс": {
+    "file": "e91dcf986cc8.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "обличчя": {
+    "file": "af8d8fa72987.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "обідати": {
+    "file": "6f27de675964.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "одяг": {
+    "file": "578e5da792c0.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "охорона": {
+    "file": "093e7e6a1dc8.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "очі": {
+    "file": "75141ba95fda.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "палець": {
+    "file": "7b1e427a03fc.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "парк": {
+    "file": "e1a2cc76544f.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "перехрестя": {
+    "file": "600ae74d5627.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "писати": {
+    "file": "ffe32f35c606.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "планувати": {
+    "file": "9789e760b97e.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "площа": {
+    "file": "fb4a3f2010e5.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "поганий": {
+    "file": "a4485847b4d3.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "поліклініка": {
+    "file": "d10a5e8cf077.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "постріл": {
+    "file": "b5202cc1dbc4.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "пошта": {
+    "file": "36b1f4f8d0c4.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "пояснювати": {
+    "file": "b9d1a544cc00.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "працювати": {
+    "file": "ae80afedda4d.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "прибирати": {
+    "file": "1429e22c5bc6.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "продавати": {
+    "file": "0348253e1f6c.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "піднімати": {
+    "file": "61e1372dfe86.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "пікап": {
+    "file": "6521a7557152.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "рахунок": {
+    "file": "30af97533ab4.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "ресторан": {
+    "file": "9a161dc115fa.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "ринок": {
+    "file": "73d5b21e8279.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "робота": {
+    "file": "98a9cb5aa3b7.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "розуміти": {
+    "file": "aeafd4bff5f6.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "рот": {
+    "file": "7942aca48da6.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "ручка": {
+    "file": "bd35d68f6af7.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "рятувати": {
+    "file": "e9ddbdd12d11.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "світло": {
+    "file": "9f779cf9f9c0.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "слухати": {
+    "file": "cd2601a6d393.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "смачний": {
+    "file": "961781d82907.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "смачно": {
+    "file": "e6a013236872.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "старий": {
+    "file": "e47a916108a0.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "стріляти": {
+    "file": "71d1b13f64ab.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "стіл": {
+    "file": "e542662a6855.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "стілець": {
+    "file": "02719dc8837e.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "сумка": {
+    "file": "0da4acc00857.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "суп": {
+    "file": "f61df26456be.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "супермаркет": {
+    "file": "7c02303bc673.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "таблетки": {
+    "file": "a10e6d61046e.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "тарілка": {
+    "file": "8a9a40896b2b.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "теплий": {
+    "file": "6d6729b915f6.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "техніка": {
+    "file": "c47b02bf4990.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "тихий": {
+    "file": "b963f67b38bd.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "форма": {
+    "file": "584e711504a9.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "холодний": {
+    "file": "3c4f4ab5d6eb.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "хотіти": {
+    "file": "526d481cf9fb.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "центр": {
+    "file": "77e83705c066.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "цікавий": {
+    "file": "f253c5ccace1.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "цікаво": {
+    "file": "187b9a357066.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "чекати": {
+    "file": "da65dc71dabb.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "читати": {
+    "file": "7cf63dd3643e.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "швидкий": {
+    "file": "127e424982d9.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "швидко": {
+    "file": "13a494d45444.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "шукати": {
+    "file": "f5be5307489e.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "яблуко": {
+    "file": "16b5789b4d4d.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "історія": {
+    "file": "97e6db019479.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "їздити": {
+    "file": "2ce3ed6739d3.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
+  },
+  "їсти": {
+    "file": "9a8e5293b630.mp3",
+    "provider": "elevenlabs",
+    "at": "2026-09-21"
   }
 }
