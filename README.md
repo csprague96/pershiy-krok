@@ -13,6 +13,7 @@ Routing Middleware (`middleware.js`) add on-demand speech and an access gate.
 npm run build   # → dist/
 npm run dev     # build + serve on http://localhost:3000 (gate + api/ mounted too)
 npm run tts     # pre-generate pronunciation audio (see Audio)
+npm run check   # lint src/data.js: slots, duplicates, keyTerms, audio coverage
 ```
 
 ## Layout
@@ -33,6 +34,7 @@ npm run tts     # pre-generate pronunciation audio (see Audio)
 | `middleware.js` | Redirects gated paths to `/login` without the cookie |
 | `lib/` | Shared: session tokens, speech providers, phrase harvest, .env loader |
 | `scripts/tts.mjs` | Batch audio generation into `src/audio/` |
+| `scripts/check.mjs` | Content lint — run before committing content |
 | `scripts/serve.mjs` | Local server that mirrors Vercel (cleanUrls, middleware, api/) |
 
 ## Access gate
@@ -89,7 +91,16 @@ no microphone at all.
 each shape. Progress is stored per scene in localStorage. Every count on the site is
 computed from the data.
 
-Ukrainian in the new content was written by a non-native author — **have a native
+**Adding content.** Edit `src/data.js`, run `npm run check -- --no-audio`, then
+`npm run tts`, then `npm run check` — it fails if any playable phrase has no file or
+was made by a fallback provider (the tts script falls back *silently*, per phrase).
+Commit the MP3s and `manifest.json` with the data; Vercel never runs TTS. Spoken
+targets have no accepted-variants field, so keep them short and ungendered (present
+tense or imperative — the past tense is gendered).
+
+Sections 09–11 and tracks 08–09 are built on a Ukrainian teacher's A0 word list, so
+their headwords are native-vetted; their sentences are not. Ukrainian elsewhere was
+written by a non-native author — **have a native
 speaker skim `src/data.js` before wide distribution**, especially the radio and
 casualty phrasing, which units vary on.
 
@@ -125,7 +136,5 @@ allow-list works). Environment variables to set in the project:
 
 ## Known gaps
 
-- Audio is currently Google `uk-UA-Wavenet-A` for every phrase; run
-  `npm run tts -- --upgrade` with an ElevenLabs key to replace it all.
 - The gate is one shared code, not per-user accounts.
 - No offline mode yet; the site needs a connection for audio and grading.
