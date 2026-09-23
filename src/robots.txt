@@ -1,0 +1,10 @@
+# Перший Крок — the homepage and glossary are public; everything behind the
+# access gate redirects to /login, so there is nothing there for a crawler.
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /course
+Disallow: /scenario
+Disallow: /api/
+
+Sitemap: {{SITE_URL}}/sitemap.xml

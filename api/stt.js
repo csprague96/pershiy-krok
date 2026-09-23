@@ -27,6 +27,12 @@ export default {
     if (!/^audio\/(webm|mp4|ogg|wav|x-wav|mpeg|aac|m4a)$/.test(mime)) {
       return Response.json({ error: `unsupported audio type ${mime || '(none)'}` }, { status: 415 });
     }
+    // Check the declared size first — otherwise an oversized body is fully
+    // buffered into memory before we get to reject it.
+    const declared = Number(request.headers.get('content-length'));
+    if (Number.isFinite(declared) && declared > MAX_BYTES) {
+      return Response.json({ error: 'recording too large' }, { status: 413 });
+    }
     const audio = new Uint8Array(await request.arrayBuffer());
     if (audio.byteLength < 1000) return Response.json({ error: 'recording too short' }, { status: 400 });
     if (audio.byteLength > MAX_BYTES) return Response.json({ error: 'recording too large' }, { status: 413 });

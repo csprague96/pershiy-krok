@@ -1,0 +1,22 @@
+# The content lint is the only thing that validates src/data.js — run it on
+# every push so a bad term, a missing translation or a phrase with no audio
+# can't reach main unnoticed.
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Content lint (terms, scenarios, audio coverage)
+        run: npm run check
+      - name: Build
+        run: npm run build

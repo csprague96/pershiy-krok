@@ -183,9 +183,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .term:nth-child(odd) { transform: rotate(-0.3deg); }
 .term:nth-child(even) { transform: rotate(0.25deg); }
-.term[aria-expanded='true'] { background: var(--yellow); }
-.term-row {
-  display: grid; grid-template-columns: 200px 150px 1fr auto; gap: 16px; align-items: center;
+.term[data-open='true'] { background: var(--yellow); }
+/* Row = [expand button | play button]; the expand button carries the columns,
+   so the two controls stay siblings (no button inside a button). */
+.term-row { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
+.term-main {
+  display: grid; grid-template-columns: 200px 150px 1fr; gap: 16px; align-items: center;
+  min-width: 0; text-align: left; color: inherit; background: none;
 }
 .term-uk { font: 700 20px var(--display); }
 .term-tr { font: 500 13px var(--mono); color: var(--blue); }
@@ -194,11 +198,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-top: 1.5px dashed var(--ink); padding-top: 10px;
   display: flex; gap: 24px; flex-wrap: wrap; font: 400 13px var(--sans);
 }
+/* `display` here beats the UA sheet's `[hidden] { display: none }`, so without
+   this every row renders permanently open — same guard as .lang-menu. */
+.term-more[hidden] { display: none; }
 .term-more .src { margin-left: auto; font: 500 11px var(--mono); color: var(--grey-3); }
-.empty {
+.empty, .noscript {
   border: 1px dashed var(--line-2); background: var(--ink-2); color: var(--grey-3);
   padding: 24px; text-align: center; font: 500 14px var(--sans);
 }
+/* The glossary, courses and scenarios are rendered by app.js — without it the
+   page would otherwise be silently blank. */
+.noscript { display: block; margin: 24px 0; }
 
 /* alphabet rail (4b) */
 .alpha { display: flex; flex-wrap: wrap; gap: 2px; padding: 8px 0 0; }
@@ -320,9 +330,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   }
   .rail button { flex: none; border: 1px solid var(--line-2); }
   .terms { padding-left: 0; padding-top: 14px; }
-  .term-row { grid-template-columns: 1fr auto; row-gap: 2px; }
-  .term-tr, .term-en { grid-column: 1; }
-  .term-row .play { grid-row: 1 / span 3; }
+  .term-main { grid-template-columns: 1fr; row-gap: 2px; }
   .meter { width: 100%; }
   .site-foot { padding-bottom: 110px; }
   .build { margin-left: 0; }

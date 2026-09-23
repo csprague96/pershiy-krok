@@ -9,8 +9,10 @@ import { execSync } from 'node:child_process';
 import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadEnv } from '../lib/env.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+loadEnv(path.join(root, '.env')); // local SITE_URL; a no-op on Vercel
 const src = path.join(root, 'src');
 const dist = path.join(root, 'dist');
 
@@ -33,6 +35,15 @@ const branch = env.VERCEL_GIT_COMMIT_REF || git('rev-parse --abbrev-ref HEAD') |
 const target = env.VERCEL_ENV || (env.CI ? 'ci' : 'local');
 const dirty = !env.VERCEL_ENV && git('status --porcelain') !== '';
 
+// Absolute origin, for canonical links, og:url and the sitemap. On Vercel,
+// VERCEL_PROJECT_PRODUCTION_URL is the project's production domain (stable
+// across deploys, unlike VERCEL_URL). Set SITE_URL to override, e.g. once a
+// custom domain is in front of the project.
+const siteUrl = (env.SITE_URL
+  || (env.VERCEL_PROJECT_PRODUCTION_URL && `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`)
+  || (env.VERCEL_URL && `https://${env.VERCEL_URL}`)
+  || 'http://localhost:3000').replace(/\/$/, '');
+
 const buildInfo = {
   builtAt: builtAt.toISOString(),
   builtAtEpoch: builtAt.getTime(),
@@ -43,6 +54,7 @@ const buildInfo = {
   dirty,
   deploymentUrl: env.VERCEL_URL ? `https://${env.VERCEL_URL}` : null,
   region: env.VERCEL_REGION || null,
+  siteUrl,
   node: process.version,
 };
 
@@ -65,9 +77,11 @@ const tokens = {
   '{{BUILD_BRANCH}}': branch,
   '{{BUILD_ENV}}': target,
   '{{YEAR}}': String(builtAt.getUTCFullYear()),
+  '{{SITE_URL}}': siteUrl,
+  '{{BUILD_DATE}}': buildInfo.builtAt.slice(0, 10),
 };
 
-const TEXT = new Set(['.html', '.css', '.js', '.json', '.svg', '.webmanifest', '.txt']);
+const TEXT = new Set(['.html', '.css', '.js', '.json', '.svg', '.webmanifest', '.txt', '.xml']);
 
 async function walk(dir) {
   const out = [];
@@ -103,3 +117,4 @@ await writeFile(path.join(dist, 'build-info.json'), JSON.stringify(buildInfo, nu
 
 console.log(`built ${stamp}`);
 console.log(`  ${stamped} file(s) stamped → ${path.relative(root, dist)}/`);
+console.log(`  site url: ${siteUrl}`);

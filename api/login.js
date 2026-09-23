@@ -24,6 +24,9 @@ export default {
     if (!gateEnabled(env)) return Response.json({ error: 'gate is off' }, { status: 400 });
 
     const ip = ipOf(request);
+    // Drop expired records: without this the map grows for the life of the
+    // instance, one entry per attacking IP.
+    for (const [k, v] of misses) if (Date.now() - v.t >= WINDOW) misses.delete(k);
     const rec = misses.get(ip);
     if (rec && rec.n >= LIMIT && Date.now() - rec.t < WINDOW) {
       return Response.json({ error: 'too many attempts — wait a few minutes' }, { status: 429 });
