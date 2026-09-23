@@ -28,7 +28,8 @@
       'hero.tagline': '— MILITARY LANGUAGE, FIRST STEP',
       'hero.p': 'Ranks, commands, gear, medical. Cyrillic + transliteration + audio, so you can understand your unit from day one — even before you can read a word.',
       'hero.search_ph': 'Search any language… “стій”, “halt”, “alto”',
-      'home.kick_command': 'Command · 04', 'home.kick_medical': 'Medical · 11',
+      'home.kick_command': 'Command', 'home.kick_medical': 'Medical',
+      'a11y.play': 'Play', 'a11y.replay': 'Replay',
       'home.wotd': 'Word of the day',
       'home.open_glossary': 'Open the glossary →',
       'stats.terms': 'terms', 'stats.scenarios': 'scenarios',
@@ -84,7 +85,8 @@
       'hero.tagline': '— LENGUA MILITAR, PRIMER PASO',
       'hero.p': 'Rangos, órdenes, equipo, medicina. Cirílico + transliteración + audio, para entender a tu unidad desde el primer día — incluso antes de poder leer una palabra.',
       'hero.search_ph': 'Busca en cualquier idioma… «стій», «alto»',
-      'home.kick_command': 'Orden · 04', 'home.kick_medical': 'Médico · 11',
+      'home.kick_command': 'Orden', 'home.kick_medical': 'Médico',
+      'a11y.play': 'Reproducir', 'a11y.replay': 'Repetir',
       'home.wotd': 'Palabra del día',
       'home.open_glossary': 'Abrir el glosario →',
       'stats.terms': 'términos', 'stats.scenarios': 'escenarios',
@@ -140,7 +142,8 @@
       'hero.tagline': '— LÍNGUA MILITAR, PRIMEIRO PASSO',
       'hero.p': 'Patentes, comandos, equipamento, medicina. Cirílico + transliteração + áudio, para entender sua unidade desde o primeiro dia — mesmo antes de conseguir ler uma palavra.',
       'hero.search_ph': 'Busque em qualquer idioma… «стій», «alto»',
-      'home.kick_command': 'Comando · 04', 'home.kick_medical': 'Médico · 11',
+      'home.kick_command': 'Comando', 'home.kick_medical': 'Médico',
+      'a11y.play': 'Reproduzir', 'a11y.replay': 'Repetir',
       'home.wotd': 'Palavra do dia',
       'home.open_glossary': 'Abrir o glossário →',
       'stats.terms': 'termos', 'stats.scenarios': 'cenários',
@@ -204,6 +207,14 @@
       $$('[data-sec-desc]').forEach((el) => {
         const sec = SECTIONS.find((s) => s.id === el.dataset.secDesc);
         if (sec) el.textContent = sec[lang];
+      });
+    }
+    // Section number of a named term — read from the data so a hand-written
+    // sample ticket can't claim a section the term isn't in.
+    if (TERMS) {
+      $$('[data-sec-no]').forEach((el) => {
+        const term = TERMS.find((x) => x.uk === el.dataset.secNo);
+        if (term) el.textContent = term.sec;
       });
     }
     // Hero: ГОВОРИ, then SPEAK / HABLA / FALA — the reader's language in yellow.
@@ -449,25 +460,34 @@
 
     const nTerms = (n) => `${n} ${n === 1 ? t('glossary.term') : t('glossary.terms')}`;
 
+    /* The play control is a real <button>, and a sibling of the expand button
+       rather than a child of it: a button nested inside a button is invalid
+       HTML, and the span+role="button" it used to be had no key handler, so
+       Enter expanded the row instead of playing and Space did nothing at all —
+       pronunciation was mouse-only. Both are now natively keyboard-operable. */
+    let termSeq = 0;
     const termHtml = (tm) => {
       const sec = SECTIONS.find((s) => s.id === tm.sec);
       const others = otherLangs()
         .map((k) => `<span><strong>${LANGS[k]}</strong> ${esc(tm[k])}</span>`)
         .join('');
       const ex = tm.example;
-      return `<button class="term" type="button" aria-expanded="false">
-        <span class="term-row">
-          <span class="term-uk">${esc(tm.uk)}</span>
-          <span class="term-tr">[${esc(tm.tr)}]</span>
-          <span class="term-en">${esc(tm[lang])}</span>
-          <span class="play" data-say="${esc(tm.uk)}" role="button" tabindex="0" aria-label="Play ${esc(tm.uk)}">▶</span>
-        </span>
-        <span class="term-more" hidden>
+      const id = `term-more-${termSeq++}`;
+      return `<div class="term" data-open="false">
+        <div class="term-row">
+          <button class="term-main" type="button" aria-expanded="false" aria-controls="${id}">
+            <span class="term-uk">${esc(tm.uk)}</span>
+            <span class="term-tr">[${esc(tm.tr)}]</span>
+            <span class="term-en">${esc(tm[lang])}</span>
+          </button>
+          <button class="play" type="button" data-say="${esc(tm.uk)}" aria-label="${esc(t('a11y.play'))} ${esc(tm.uk)}">▶</button>
+        </div>
+        <div class="term-more" id="${id}" hidden>
           ${others}
           ${ex ? `<span>«${esc(ex.uk)}» — “${esc(ex[lang] || ex.en)}”</span>` : ''}
           <span class="src">§${tm.sec} ${esc(sec ? sec[lang] : '')}</span>
-        </span>
-      </button>`;
+        </div>
+      </div>`;
     };
 
     const render = () => {
@@ -526,10 +546,12 @@
     $('#search-form').addEventListener('submit', (e) => e.preventDefault());
 
     list.addEventListener('click', (e) => {
-      const term = e.target.closest('.term');
-      if (!term) return;
-      const open = term.getAttribute('aria-expanded') === 'true';
-      term.setAttribute('aria-expanded', String(!open));
+      const toggle = e.target.closest('.term-main');
+      if (!toggle) return;
+      const term = toggle.closest('.term');
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      term.dataset.open = String(!open);
       $('.term-more', term).hidden = open;
     });
 
@@ -911,7 +933,7 @@
       return `<div class="line" data-state="done">
         <span class="who"${d.lang ? ` data-lang="${esc(d.lang)}"` : ''}>${esc(d.who)}</span>
         <span class="body">${d.body}</span>
-        ${d.say ? `<button class="play" type="button" data-say="${esc(d.say)}" aria-label="Replay" style="margin-left:auto">▶</button>` : ''}
+        ${d.say ? `<button class="play" type="button" data-say="${esc(d.say)}" aria-label="${esc(t('a11y.replay'))} ${esc(d.say)}" style="margin-left:auto">▶</button>` : ''}
       </div>`;
     };
 
@@ -1151,8 +1173,21 @@
     const msg = $('#login-msg');
     const input = $('#code', loginForm);
     const params = new URLSearchParams(location.search);
-    // Only ever bounce to a same-origin path.
-    const next = /^\/(?!\/)[^\s]*$/.test(params.get('next') || '') ? params.get('next') : '/course';
+    /* Only ever bounce to a same-origin path. A leading-slash test is not
+       enough: browsers fold backslashes into slashes, so `/\evil.com` (and
+       `/\/evil.com`) resolve to another origin and turn this page into a
+       credential-phishing hop. Resolve the candidate and demand our origin. */
+    const safeNext = (raw) => {
+      if (!raw) return '/course';
+      try {
+        const url = new URL(raw, location.href);
+        if (url.origin !== location.origin) return '/course';
+        return url.pathname + url.search + url.hash;
+      } catch {
+        return '/course';
+      }
+    };
+    const next = safeNext(params.get('next'));
     const show = (key, tone) => { msg.textContent = t(key); msg.dataset.tone = tone || ''; };
     let state = null; // { gate, authed }
     const paint = () => {

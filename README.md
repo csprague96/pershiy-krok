@@ -32,10 +32,13 @@ npm run check   # lint src/data.js: slots, duplicates, keyTerms, audio coverage
 | `api/stt.js` | Transcribes a recorded clip (ElevenLabs Scribe) |
 | `api/login.js` | Exchanges the access code for a signed cookie |
 | `middleware.js` | Redirects gated paths to `/login` without the cookie |
+| `src/robots.txt` | Crawl rules — public pages only; the gated ones 302 to `/login` |
+| `src/sitemap.xml` | The two crawlable pages, with absolute `{{SITE_URL}}` links |
 | `lib/` | Shared: session tokens, speech providers, phrase harvest, .env loader |
 | `scripts/tts.mjs` | Batch audio generation into `src/audio/` |
 | `scripts/check.mjs` | Content lint — run before committing content |
-| `scripts/serve.mjs` | Local server that mirrors Vercel (cleanUrls, middleware, api/) |
+| `scripts/serve.mjs` | Local server that mirrors Vercel (cleanUrls, middleware, api/, site headers) |
+| `.github/workflows/ci.yml` | Runs `npm run check` and `npm run build` on every push |
 
 ## Access gate
 
@@ -120,11 +123,31 @@ Values come from Vercel's build environment (`VERCEL_ENV`, `VERCEL_GIT_COMMIT_SH
 `VERCEL_GIT_COMMIT_REF`, `VERCEL_URL`). Locally they fall back to `git`, and a `+` after
 the commit means the working tree was dirty when the build ran.
 
+## Security headers
+
+`vercel.json` sets a site-wide header block: a Content-Security-Policy, `nosniff`,
+`Referrer-Policy`, `X-Frame-Options`, HSTS, `Permissions-Policy` and COOP.
+
+Two things to know before you edit the CSP:
+
+- `script-src` is `'self'` with no `'unsafe-inline'`, which holds only because no
+  page has an inline `<script>`. **Adding one will break the site** — put the code
+  in `src/app.js` instead.
+- `style-src` does allow `'unsafe-inline'`, because the markup leans on inline
+  `style="…"` attributes and `app.js` sets inline styles. Moving those into
+  `styles.css` would let that come out.
+
+`media-src` allows `blob:` for recorded clips and on-demand `/api/tts` audio, and
+`Permissions-Policy` keeps `microphone=(self)` for the graded speaking steps.
+
+`scripts/serve.mjs` applies the same site-wide block locally, so a policy that
+breaks the site fails in `npm run dev` rather than in production.
+
 ## Vercel
 
-`vercel.json` sets `buildCommand`, `outputDirectory: dist`, `cleanUrls`, cache headers,
-and `functions` config for `api/*.js` (which includes `src/data.js` so the TTS
-allow-list works). Environment variables to set in the project:
+`vercel.json` sets `buildCommand`, `outputDirectory: dist`, `cleanUrls`, cache and
+security headers, and `functions` config for `api/*.js` (which includes `src/data.js`
+so the TTS allow-list works). Environment variables to set in the project:
 
 | Variable | Purpose |
 | --- | --- |
@@ -133,8 +156,12 @@ allow-list works). Environment variables to set in the project:
 | `ELEVENLABS_API_KEY` | on-demand TTS + speech-to-text grading |
 | `ELEVENLABS_VOICE_ID` | optional voice override |
 | `GOOGLE_TTS_KEY` / `AZURE_SPEECH_*` | TTS fallbacks when ElevenLabs fails |
+| `SITE_URL` | optional; the absolute origin used for canonical links, `og:url` and the sitemap. Defaults to `VERCEL_PROJECT_PRODUCTION_URL`, so set it only when a custom domain is in front of the project |
 
 ## Known gaps
 
 - The gate is one shared code, not per-user accounts.
 - No offline mode yet; the site needs a connection for audio and grading.
+- No `og:image`, so link previews are text-only — it wants a real 1200×630 card.
+- The glossary re-renders every row on each keystroke and the search text does not
+  live in the URL, so a search can't be shared.

@@ -18,6 +18,16 @@ const mw = await import(pathToFileURL(path.join(root, 'middleware.js')).href);
 const matchers = [].concat(mw.config?.matcher || []);
 const matches = (p) => matchers.some((m) => (m.endsWith('/:path*') ? p.startsWith(m.slice(0, -7)) : m === p));
 
+// Site-wide headers from vercel.json (source "/(.*)"), so a Content-Security-
+// Policy that breaks the site fails here rather than in production. The
+// per-path caching rules are deliberately left out — they only matter on a CDN.
+const vercelJson = JSON.parse(await readFile(path.join(root, 'vercel.json'), 'utf8'));
+const siteHeaders = Object.fromEntries(
+  (vercelJson.headers || [])
+    .filter((h) => h.source === '/(.*)')
+    .flatMap((h) => h.headers.map(({ key, value }) => [key.toLowerCase(), value])),
+);
+
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -25,6 +35,8 @@ const TYPES = {
   '.json': 'application/json; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.mp3': 'audio/mpeg',
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
 };
 
 const exists = async (p) => { try { return (await stat(p)).isFile(); } catch { return false; } };
@@ -41,7 +53,7 @@ const toRequest = async (req) => {
 };
 
 const send = async (res, response) => {
-  const headers = {};
+  const headers = { ...siteHeaders };
   response.headers.forEach((v, k) => { if (k !== 'set-cookie') headers[k] = v; });
   const cookies = response.headers.getSetCookie?.() || [];
   if (cookies.length) headers['set-cookie'] = cookies;
@@ -68,11 +80,17 @@ createServer(async (req, res) => {
       return send(res, await handler(request));
     }
 
-    let file = path.join(dist, decodeURIComponent(url.pathname));
+    // `new URL` normalizes `../` but not `%2e%2e`, so decode first and then
+    // confirm the result is still inside dist/ before reading anything.
+    let file = path.resolve(dist, `.${path.posix.normalize(decodeURIComponent(url.pathname))}`);
+    if (file !== dist && !file.startsWith(dist + path.sep)) {
+      res.writeHead(403, { 'content-type': 'text/plain' });
+      return res.end('403');
+    }
     if (url.pathname.endsWith('/')) file = path.join(file, 'index.html');
     if (!(await exists(file)) && (await exists(`${file}.html`))) file += '.html';
     if (!(await exists(file))) { res.writeHead(404, { 'content-type': 'text/plain' }); return res.end('404'); }
-    res.writeHead(200, { 'content-type': TYPES[path.extname(file)] || 'application/octet-stream' });
+    res.writeHead(200, { ...siteHeaders, 'content-type': TYPES[path.extname(file)] || 'application/octet-stream' });
     res.end(await readFile(file));
   } catch (err) {
     console.error(err);
